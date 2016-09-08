@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "bzale.Common", "bzale.Core.Common\bzale.Common.xproj", "{D7AB1EB5-BFE6-4403-9F89-14F3302D7749}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "bzale.server.WebAPI", "bzale.Core.ServiceHost\bzale.server.WebAPI.xproj", "{DD5669A2-C3EF-4A7D-88FB-AF4CE5BCF3A6}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "bzale.TestClient", "bzale.Core.TestClient\bzale.TestClient.xproj", "{400C28D8-EE67-4DEF-BEE0-610889481DEF}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "bzale.Web", "..\BzaleWeb\bzale.Web\bzale.Web.xproj", "{FABCDB5F-9892-4472-B228-19B623EB116D}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "bzale.Service", "..\BzaleWeb\bzale.Service\bzale.Service.xproj", "{677AF9AA-F574-429A-9F44-F5401CEDB63D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F9ADDFC-53B4-4B3A-812E-FE68DACE5670}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D7AB1EB5-BFE6-4403-9F89-14F3302D7749}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7AB1EB5-BFE6-4403-9F89-14F3302D7749}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7AB1EB5-BFE6-4403-9F89-14F3302D7749}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7AB1EB5-BFE6-4403-9F89-14F3302D7749}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD5669A2-C3EF-4A7D-88FB-AF4CE5BCF3A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD5669A2-C3EF-4A7D-88FB-AF4CE5BCF3A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD5669A2-C3EF-4A7D-88FB-AF4CE5BCF3A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD5669A2-C3EF-4A7D-88FB-AF4CE5BCF3A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{400C28D8-EE67-4DEF-BEE0-610889481DEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{400C28D8-EE67-4DEF-BEE0-610889481DEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{400C28D8-EE67-4DEF-BEE0-610889481DEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{400C28D8-EE67-4DEF-BEE0-610889481DEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FABCDB5F-9892-4472-B228-19B623EB116D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FABCDB5F-9892-4472-B228-19B623EB116D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FABCDB5F-9892-4472-B228-19B623EB116D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FABCDB5F-9892-4472-B228-19B623EB116D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{677AF9AA-F574-429A-9F44-F5401CEDB63D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{677AF9AA-F574-429A-9F44-F5401CEDB63D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{677AF9AA-F574-429A-9F44-F5401CEDB63D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{677AF9AA-F574-429A-9F44-F5401CEDB63D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,36 @@
+
+.right {
+    float: right;
+}
+
+input, select, textarea {
+    max-width: 280px;
+}
+
+.carousel-caption {
+    z-index: 10 !important;
+}
+
+    .carousel-caption p {
+        font-size: 20px;
+        line-height: 1.4;
+    }
+
+@media (min-width:768px) {
+    .carousel-caption {
+        z-index: 10 !important;
+    }
+
+    #cart-button {
+        content: "Cart";
+    }
+}
+
+#cart-button {
+    content: "";
+}
+
+
+#input-search {
+    max-width: 100%;
+}

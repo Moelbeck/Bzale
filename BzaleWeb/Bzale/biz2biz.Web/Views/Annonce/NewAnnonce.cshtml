@@ -1,0 +1,16 @@
+﻿@{
+    //ViewBag.Title = "Opret Annonce";
+    Layout = "/Views/Shared/_MyAccount.cshtml";
+}
+
+<h1>Ny annonce</h1>
+<input type="button" class="btn btn-default" value="Skift kategori"onclick="btnregretCategory();" />
+
+                @Html.Partial("AnnoncePartials/AnnoncePartial_Car")
+
+<script type="text/javascript">
+    function btnregretCategory() {
+        window.location.href = '@Url.Action("SelectAnnonceType", "Annonce")';
+
+    }
+</script>
