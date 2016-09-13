@@ -3,13 +3,11 @@
 {
     <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm">
         <ul class="nav navbar-nav navbar-right">
-            @if (User.IsInRole("Admin")) {
             <li>
-                <a asp-controller="Manage" asp-route-area="Admin" asp-action="Index" title="Manage">Admin</a>
+                @Html.ActionLink("Opret Annonce", "CreateSaleListing", "SaleListing");
             </li>
-            }
             <li>
-                <a asp-controller="Manage" asp-action="Index" title="Manage">Hello @CurrentUser.FirstName!</a>
+                @Html.ActionLink(string.Format("Hej {0} !", @CurrentUser.FirstName), "Index", "Management");
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">Log off</button>
@@ -28,4 +26,4 @@ else
 
         </ul>
         </div>
-        }
+}

@@ -5,11 +5,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 
 using Microsoft.Extensions.Logging;
-using Web2.Service;
 using bzale.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using bzale.Web.Model;
+using bzale.WebsiteService;
 
 namespace Web2.Controllers
 {
@@ -103,6 +103,8 @@ namespace Web2.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
+
+
         //Validate if email is already used
         //Must return a JSON
         //[HttpPost]

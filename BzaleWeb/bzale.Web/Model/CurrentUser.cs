@@ -121,5 +121,14 @@ namespace bzale.Web.Model
             Email = acc.Email;
             CanSell = acc.Company==null?false:acc.Company.IsVerified;
         }
+
+        public static void SetCurrentUserToNull()
+        {
+            ID = 0;
+            FirstName = null;
+            LastName = null;
+            Email = null;
+            CanSell =false;
+        }
     }
 }

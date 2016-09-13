@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,9 +31,12 @@ namespace bzale.Common
     }
     public enum eGender
     {
-        None=0,
+        [Display(Name = "Ukendt")]
+        None = 0,
+        [Display(Name="Mand")]
         Male=1,
-        Female=2
+        [Display(Name = "Kvinde")]
+        Female = 2
     }
     public enum eAmountType
     {
@@ -100,7 +104,28 @@ namespace bzale.Common
     [Flags]
     public enum SaleListingType
     {
-        None=0,
+        None,
+        Bed,
+        Bricks,
+
+
+        Car,
+        Chair,
+        Computer,
+        Cabinet,
+
+        Door,
+
+        Folder,
+
+        Sand,
+        Screen,
+        Shelf,
+        Soil,
+        Stones,
+        
+        Table,
+        Telephone
 
     }
 }

@@ -1,13 +1,12 @@
 ﻿
 using System;
-using bzale.Web.Services.HttpBaseClient;
+using bzale.WebsiteService;
 using bzale.ViewModel;
-using bzale.Service.Enum;
 using System.Threading.Tasks;
 using bzale.Common;
 using bzale.Service;
 
-namespace Web2.Service
+namespace bzale.WebsiteService
 {
     /// <summary>
     /// AccountService is handling login, creation etc for accounts

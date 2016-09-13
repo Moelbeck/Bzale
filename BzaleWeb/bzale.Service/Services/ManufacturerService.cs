@@ -1,12 +1,11 @@
-﻿using bzale.Service.Enum;
+﻿using bzale.Service;
 using bzale.ViewModel;
-using bzale.Web.Services.HttpBaseClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bzale.Service.Services
+namespace bzale.WebsiteService
 {
     public class ManufacturerService
     {

@@ -1,14 +1,12 @@
 ﻿using bzale.Common;
 using bzale.Service;
-using bzale.Service.Enum;
 using bzale.ViewModel;
-using bzale.Web.Services.HttpBaseClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Web2.Service
+namespace bzale.WebsiteService
 {
     /// <summary>
     /// This service class have connection to item repository
