@@ -16,11 +16,11 @@ namespace bzale.WebService
     public class RatingWebService : IRatingWebService
     {
 
-        private readonly RatingRepository _ratingRepository;
+        private readonly IRatingRepository _ratingRepository;
 
-        public RatingWebService(BzaleDatabaseContext context)
+        public RatingWebService(IRatingRepository ratingrepo)
         {
-            _ratingRepository = new RatingRepository(context);
+            _ratingRepository = ratingrepo;
         }
         public bool CreateRating(RatingDTO viewmodel)
         {

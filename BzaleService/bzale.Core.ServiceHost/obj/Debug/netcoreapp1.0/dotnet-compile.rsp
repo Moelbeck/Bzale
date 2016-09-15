@@ -223,10 +223,20 @@ C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Controllers\CreateAndUpd
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Controllers\ManufacturerWebController.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Controllers\RatingWebController.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Controllers\SaleListingWebController.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\IAccountRepository.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\IAccountWebService.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\IAdvertiserRepository.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\ICategoryRepository.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\ICategoryWebService.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\ICompanyRepository.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\IManufacturerRepository.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\IManufacturerService.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\IProductRepository.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\IRatingRepository.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\IRatingWebService.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\ISaleListingRepository.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\ISaleListingWebService.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Interfaces\ISubCategoryRepository.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Migrations\20160818132333_MyFirstMigration.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Migrations\20160818132333_MyFirstMigration.Designer.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Migrations\20160823065228_secondmigrate.cs
@@ -268,6 +278,7 @@ C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Repository\Abstract\Gene
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Repository\context\Context.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Services\AccountWebService.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Services\CategoryWebService.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Services\ManufacturerWebService.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Services\RatingWebService.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Services\SaleListingWebService.cs
 C:\Work\BZale\Bzale\BzaleService\bzale.Core.ServiceHost\Services\Internal Services\CreateAndUpdateService.cs

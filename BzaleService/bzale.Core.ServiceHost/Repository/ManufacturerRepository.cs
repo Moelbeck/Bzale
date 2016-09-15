@@ -4,10 +4,11 @@ using System.Linq;
 using bzale.Model;
 using bzale.Repository.DatabaseContext;
 using bzale.Repository.Abstract;
+using bzale.WebService;
 
 namespace bzale.Repository
 {
-    public class ManufacturerRepository : GenericRepository<Manufacturer>
+    public class ManufacturerRepository : GenericRepository<Manufacturer>, IManufacturerRepository
     {
         public ManufacturerRepository(BzaleDatabaseContext context) : base(context)
         {

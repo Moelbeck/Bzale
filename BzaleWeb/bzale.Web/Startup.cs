@@ -9,6 +9,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using bzale.Web.Model;
+using bzale.Filter;
+using Microsoft.AspNet.Authorization;
 
 namespace bzale.Web
 {
@@ -33,7 +35,12 @@ namespace bzale.Web
             services.AddSession(options => {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.CookieName = ".Bzale";
-            }); services.AddMvc();
+            });
+            services.AddMvc(opts =>
+            {
+                opts.Filters.Add(typeof(VerifiedCompanyAttribute));
+
+            });
             services.AddDistributedMemoryCache();
         }
 

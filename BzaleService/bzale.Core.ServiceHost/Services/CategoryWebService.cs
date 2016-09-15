@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using bzale.Common;
-using bzale.Core.ServiceHost.Repository;
 using bzale.Model;
 using bzale.Repository;
 using bzale.Repository.DatabaseContext;
@@ -17,16 +16,13 @@ namespace bzale.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select CategoryService.svc or CategoryService.svc.cs at the Solution Explorer and start debugging.
     public class CategoryWebService : ICategoryWebService
     {
-        private readonly CategoryRepository _categoryRepository;
-        private readonly SubCategoryRepository _subcategoryRepository;
-        private ProductRepository _productRepository;
-        private ManufacturerRepository _manufacturerRepository;
-        public CategoryWebService(BzaleDatabaseContext context)
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly ISubCategoryRepository _subcategoryRepository;
+
+        public CategoryWebService(ICategoryRepository cateRepo,ISubCategoryRepository subRepo)
         {
-            _categoryRepository = new CategoryRepository(context);
-            _productRepository = new ProductRepository(context);
-            _manufacturerRepository = new ManufacturerRepository(context);
-            _subcategoryRepository = new SubCategoryRepository(context);
+            _categoryRepository = cateRepo;
+            _subcategoryRepository = subRepo;
         }
 
         public List<CategoryDTO> GetMainCategories(int page, int size)
@@ -73,19 +69,6 @@ namespace bzale.WebService
         }
 
 
-        public ProductDTO GetProductByID(int id)
-        {
-            try
-            {
-                ProductType product = _productRepository.GetProductByID(id);
-                return Mapper.Map<ProductType, ProductDTO>(product);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
 
         public List<CategoryDTO> GetCategoriesBySearchString(string searchstring, int page,int size, int userid)
         {
@@ -137,56 +120,6 @@ namespace bzale.WebService
             }
         }
 
-        public void CreateProduct(ProductDTO viewmodel)
-        {
-            try
-            {
-                var product = Mapper.Map<ProductDTO, ProductType>(viewmodel);
-                _productRepository.AddProduct(product);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-        }
-
-        public void CreateManufacturer(ManufacturerDTO viewmodel)
-        {
-            try
-            {
-                var manufacturer = Mapper.Map<ManufacturerDTO, Manufacturer>(viewmodel);
-                var categories = _categoryRepository.GetCategoriesWithIDs(viewmodel.CategoryIDs);
-
-                manufacturer.Categories = categories;
-                _manufacturerRepository.AddNewManufacturer(manufacturer);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-        }
-
-        public List<ManufacturerDTO> GetManufacturersInCategory(int categoryid)
-        {
-            var manufacturers = _manufacturerRepository.GetManufacturersForCategory(categoryid, 1, int.MaxValue);
-            return manufacturers.Select(Mapper.Map<Manufacturer, ManufacturerDTO>).ToList();
-        }
-
-        public ManufacturerDTO GetManuFacturer(int id)
-        {
-            var manufacturer = _manufacturerRepository.GetManufacturer(id);
-            return Mapper.Map<Manufacturer, ManufacturerDTO>(manufacturer);
-        }
-
-        public List<ProductDTO> GetProductsByManufacturer(int id)
-        {
-            var products = _productRepository.GetAllProductsForManufacturer(id, 1, int.MaxValue);
-            return products.Select(Mapper.Map<ProductType, ProductDTO>).ToList();
-
-        }
     }
 
 }

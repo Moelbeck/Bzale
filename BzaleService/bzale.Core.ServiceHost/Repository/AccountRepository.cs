@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using bzale.Model;
 using bzale.Repository.Abstract;
 using bzale.Repository.DatabaseContext;
+using bzale.WebService;
 
 namespace bzale.Repository
 {
-    public class AccountRepository : GenericRepository<Account>
+    public class AccountRepository :  GenericRepository<Account>,IAccountRepository
     {
         public AccountRepository(BzaleDatabaseContext context) : base(context)
         {

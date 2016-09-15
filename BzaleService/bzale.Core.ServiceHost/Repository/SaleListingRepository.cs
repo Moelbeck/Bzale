@@ -4,11 +4,11 @@ using System.Linq;
 using bzale.Model;
 using bzale.Repository.DatabaseContext;
 using bzale.Repository.Abstract;
-using bzale.Common;
+using bzale.WebService;
 
 namespace bzale.Repository
 {
-    public class SaleListingRepository : GenericRepository<SaleListing>
+    public class SaleListingRepository : GenericRepository<SaleListing>, ISaleListingRepository
     {
         public SaleListingRepository(BzaleDatabaseContext context) : base(context)
         {

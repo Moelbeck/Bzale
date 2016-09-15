@@ -1,12 +1,13 @@
 ﻿using bzale.Model;
 using bzale.Repository.Abstract;
 using bzale.Repository.DatabaseContext;
+using bzale.WebService;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace bzale.Repository
 {
-   public class RatingRepository : GenericRepository< Rating>
+   public class RatingRepository : GenericRepository< Rating>, IRatingRepository
     {
         public RatingRepository(BzaleDatabaseContext context) : base(context)
         {

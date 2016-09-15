@@ -19,24 +19,26 @@ namespace bzale.WebService
     {
     
 
-        private SaleListingRepository _saleListingRepository;
-        private CategoryRepository _categoryRepository;
-        private ProductRepository _productRepository;
-        private ManufacturerRepository _manufacturerRepository;
-        private AccountRepository _accountRepository;
+        private ISaleListingRepository _saleListingRepository;
+        private ICategoryRepository _categoryRepository;
+        private IProductRepository _productRepository;
+        private IManufacturerRepository _manufacturerRepository;
+        private IAccountRepository _accountRepository;
         private SubscriptionService _subscriptionService;
         private ImageService _imageService;
         private CreateAndUpdateService _createAndUpdateService;
-        public SaleListingWebService(BzaleDatabaseContext context)
+        public SaleListingWebService(ISaleListingRepository saleRepo, ICategoryRepository catRepo, IProductRepository prodRepo, 
+            IManufacturerRepository manuRepo, IAccountRepository accRepo )
         {
-            _saleListingRepository = new SaleListingRepository(context);
-            _manufacturerRepository = new ManufacturerRepository(context);
-            _accountRepository = new AccountRepository(context);
-            _productRepository = new ProductRepository(context);
+            _saleListingRepository = saleRepo;
+            _categoryRepository = catRepo;
+            _productRepository = prodRepo;
+
+            _manufacturerRepository = manuRepo;
+            _accountRepository = accRepo;
             _subscriptionService = new SubscriptionService();
             _imageService = new ImageService();
             _createAndUpdateService = new CreateAndUpdateService();
-            _categoryRepository = new CategoryRepository(context);
         }
 
 

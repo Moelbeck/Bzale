@@ -7,6 +7,7 @@ using bzale.WebService;
 using bzale.ViewModel;
 using bzale.Repository.DatabaseContext;
 using bzale.Common;
+using bzale.Core.ServiceHost.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,9 +19,9 @@ namespace bzale.Core.ServiceHost.Controllers
     {
         private AccountWebService _accountService;
 
-        public AccountWebController(BzaleDatabaseContext context)
+        public AccountWebController(IAccountRepository accRepo, ICompanyRepository comRepo)
         {
-            _accountService = new AccountWebService(context);
+            _accountService = new AccountWebService(accRepo, comRepo);
         }
         [HttpGet]
         [Route("login")]

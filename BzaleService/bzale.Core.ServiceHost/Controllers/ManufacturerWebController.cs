@@ -13,11 +13,11 @@ namespace bzale.Core.ServiceHost.Controllers
     [Route("api/[controller]")]
     public class ManufacturerWebController : Controller
     {
-        private CategoryWebService _categoryService;
+        private ManufacturerWebService _manufacturerservice;
 
-        public ManufacturerWebController(BzaleDatabaseContext context)
+        public ManufacturerWebController(IProductRepository prodRepo,IManufacturerRepository manuRepo, ICategoryRepository catRepo)
         {
-            _categoryService = new CategoryWebService(context);
+            _manufacturerservice = new ManufacturerWebService(prodRepo,manuRepo,catRepo);
         }
 
 
@@ -26,7 +26,7 @@ namespace bzale.Core.ServiceHost.Controllers
         public IActionResult GetManufacturersInCategory(int id)
         {
 
-            var manu = _categoryService.GetManufacturersInCategory(id);
+            var manu = _manufacturerservice.GetManufacturersInCategory(id);
             if (manu != null)
             {
                 return Ok(manu);
@@ -38,7 +38,7 @@ namespace bzale.Core.ServiceHost.Controllers
         public IActionResult GetManufacturer(int id)
         {
 
-            var manu = _categoryService.GetManuFacturer(id);
+            var manu = _manufacturerservice.GetManuFacturer(id);
             if (manu != null)
             {
                 return Ok(manu);
@@ -51,7 +51,7 @@ namespace bzale.Core.ServiceHost.Controllers
         public IActionResult GetProductsByManufacturerID(int id)
         {
 
-            var products = _categoryService.GetProductsByManufacturer(id);
+            var products = _manufacturerservice.GetProductsByManufacturer(id);
             if (products != null)
             {
                 return Ok(products);
@@ -65,7 +65,7 @@ namespace bzale.Core.ServiceHost.Controllers
         public IActionResult GetProductByID(int id)
         {
 
-            var products = _categoryService.GetProductByID(id);
+            var products = _manufacturerservice.GetProductByID(id);
             if (products != null)
             {
                 return Ok(products);

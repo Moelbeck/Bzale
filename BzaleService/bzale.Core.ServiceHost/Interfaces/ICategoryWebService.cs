@@ -23,14 +23,11 @@ namespace bzale.WebService
         #endregion
 
         #region Manufacturer
-        List<ManufacturerDTO> GetManufacturersInCategory(int categoryid);
-        ManufacturerDTO GetManuFacturer(int id);
-        List<ProductDTO> GetProductsByManufacturer(int id);
+
         #endregion
 
         void CreateMainCategory(CategoryDTO viewmodel);
         void CreateSubCategory(int mainid,CategoryDTO viewmodel);
-        void CreateProduct(ProductDTO viewmodel);
-        void CreateManufacturer(ManufacturerDTO viewmodel);
+
     }
 }

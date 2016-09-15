@@ -10,17 +10,18 @@ using bzale.Web.Model;
 
 namespace bzale.Web.Controllers
 {
-    public class ManagementController : Controller
+    public class ManageController : Controller
     {
         private AccountService _accountservice;
         private VatValidationService _vatvalidationservice;
 
-        public ManagementController()
+        public ManageController()
         {
             _accountservice = new AccountService();
             _vatvalidationservice = new VatValidationService();
         }
         // GET: /<controller>/
+        [VerifiedCompany]
         public IActionResult Index()
         {
             return View();

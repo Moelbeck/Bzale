@@ -4,10 +4,11 @@ using System.Linq;
 using bzale.Model;
 using bzale.Repository.DatabaseContext;
 using bzale.Repository.Abstract;
+using bzale.WebService;
 
 namespace bzale.Repository
 {
-   public class AdvertiserRepository : GenericRepository< Advertiser>
+   public class AdvertiserRepository : GenericRepository< Advertiser>, IAdvertiserRepository
     {
         public AdvertiserRepository(BzaleDatabaseContext context) : base(context)
         {
@@ -52,7 +53,7 @@ namespace bzale.Repository
 
     }
 
-    public class AdvertisementRepository : GenericRepository<Advertisement>
+    public class AdvertisementRepository : GenericRepository<Advertisement>, IAdvertisementRepository
     {
         public AdvertisementRepository(BzaleDatabaseContext context) : base(context)
         {

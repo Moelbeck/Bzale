@@ -18,9 +18,9 @@ namespace bzale.Core.ServiceHost.Controllers
     {
         private RatingWebService _ratingService;
 
-        public RatingWebController(BzaleDatabaseContext context)
+        public RatingWebController(IRatingRepository ratingrepo)
         {
-            _ratingService = new RatingWebService(context);
+            _ratingService = new RatingWebService(ratingrepo);
         }
 
         [HttpPost]

@@ -1,6 +1,7 @@
 ﻿using bzale.Model;
 using bzale.Repository.Abstract;
 using bzale.Repository.DatabaseContext;
+using bzale.WebService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace bzale.Repository
 {
-    public class ProductRepository : GenericRepository< ProductType>
+    public class ProductRepository : GenericRepository< ProductType>, IProductRepository
     {
         public ProductRepository(BzaleDatabaseContext context) : base(context)
         {

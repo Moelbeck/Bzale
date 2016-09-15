@@ -18,10 +18,10 @@ namespace bzale.Core.ServiceHost.Controllers
     {
         private CategoryWebService _categoryService;
 
-        public CategoryWebController(BzaleDatabaseContext context)
+        public CategoryWebController(ICategoryRepository catrepo, ISubCategoryRepository subrepo)
         {
             
-                _categoryService = new CategoryWebService(context);
+                _categoryService = new CategoryWebService(catrepo,subrepo);
         }
 
         [HttpGet]

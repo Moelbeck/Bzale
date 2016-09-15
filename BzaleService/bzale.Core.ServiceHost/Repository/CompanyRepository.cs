@@ -3,10 +3,11 @@ using System.Linq;
 using bzale.Model;
 using bzale.Repository.DatabaseContext;
 using bzale.Repository.Abstract;
+using bzale.Core.ServiceHost.Interfaces;
 
 namespace bzale.Repository
 {
-    public class CompanyRepository : GenericRepository<Company>
+    public class CompanyRepository : GenericRepository<Company>, ICompanyRepository
     {
         public CompanyRepository(BzaleDatabaseContext context) : base(context)
         {

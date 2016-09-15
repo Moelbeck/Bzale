@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using bzale.Model;
 using bzale.Repository.DatabaseContext;
-using bzale.Common;
 using bzale.Repository.Abstract;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using bzale.Model.Base;
+using bzale.WebService;
 
 namespace bzale.Repository
 {
-    public class CategoryRepository : GenericRepository<Category>
+    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
 
 

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using bzale.Common;
+using bzale.Core.ServiceHost.Interfaces;
 using bzale.Extension;
 using bzale.Model;
 using bzale.Repository;
@@ -21,14 +22,14 @@ namespace bzale.WebService
     /// </summary>
     public class AccountWebService : IAccountWebtService
     {
-        readonly AccountRepository _accountRepository;
-        readonly CompanyRepository _companyRepository;
+        readonly IAccountRepository _accountRepository;
+        readonly ICompanyRepository _companyRepository;
         readonly CreateAndUpdateService _createAndUpdateService;
 
-        public AccountWebService(BzaleDatabaseContext context)
+        public AccountWebService(IAccountRepository accountService, ICompanyRepository comRepo)
         {
-            _accountRepository = new AccountRepository(context);
-            _companyRepository = new CompanyRepository(context);
+            _accountRepository = accountService;
+            _companyRepository = comRepo;
             _createAndUpdateService = new CreateAndUpdateService();
         }
 

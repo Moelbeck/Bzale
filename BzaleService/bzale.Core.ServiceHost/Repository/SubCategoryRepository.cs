@@ -1,14 +1,15 @@
 ﻿using bzale.Model;
 using bzale.Repository.Abstract;
 using bzale.Repository.DatabaseContext;
+using bzale.WebService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace bzale.Core.ServiceHost.Repository
+namespace bzale.WebService
 {
-    public class SubCategoryRepository : GenericRepository<SubCategory>
+    public class SubCategoryRepository : GenericRepository<SubCategory>, ISubCategoryRepository
     {
 
         public SubCategoryRepository(BzaleDatabaseContext context) : base(context)

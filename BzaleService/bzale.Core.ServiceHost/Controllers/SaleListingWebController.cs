@@ -18,9 +18,11 @@ namespace bzale.Core.ServiceHost.Controllers
     {
         private SaleListingWebService _salelistingService;
 
-        public SaleListingWebController(BzaleDatabaseContext context)
+        public SaleListingWebController(ISaleListingRepository saleRepo,ICategoryRepository catRepo, IProductRepository prodRepo,IManufacturerRepository manuRepo,
+            IAccountRepository accRepo)
+
         {
-            _salelistingService = new SaleListingWebService(context);
+            _salelistingService = new SaleListingWebService(saleRepo,catRepo,prodRepo,manuRepo,accRepo);
         }
         // GET: api/values
         #region Salelisting
