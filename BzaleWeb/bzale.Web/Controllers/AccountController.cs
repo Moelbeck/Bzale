@@ -46,6 +46,7 @@ namespace Web2.Controllers
                 var account =  await _accountservice.Login(model.UserName, model.Password);
                 if (account != null)
                 {
+
                     CurrentUser.InstantiateCurrentUser(account);
 
                     return RedirectToAction("Index", "Home");

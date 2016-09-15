@@ -2,7 +2,7 @@
     Layout = "_ManagementLayout.cshtml";
 }
 @model bzale.ViewModel.CompanyDTO
-
+@using bzale.Web.Model;
 <div class="row">
     <div class="col-md-8">
         <section>
@@ -10,11 +10,33 @@
                 <div class="col-md-offset-2 col-md-10">
                     @using (Html.BeginForm("Login", "Account", FormMethod.Post))
                     {
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <h1>Indtast CVR nummer for at blive valideret.</h1>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                @Html.DisplayNameFor(e => e.CountryCode)                                
+                                @Html.DropDownListFor(m => m.CountryCode, Html.GetEnumSelectList<bzale.Common.eCountryCode>())
 
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <h1>Indtast CVR nummer for at blive valideret.</h1>
+                            </div>
+                        </div>
 
                     }
-                    @Html.DisplayNameFor(e => e.VAT)
-                    @Html.TextBoxFor(e => e.VAT)
+                    @if (!string.IsNullOrEmpty(CurrentUser.CompanyVAT))
+            {
+
+                        @Html.DisplayNameFor(e => e.VAT)
+                        @Html.TextBoxFor(e => e.VAT, new { @readonly = true })
+
+                    }
                 </div>
             </div>
             <div class="form-group">

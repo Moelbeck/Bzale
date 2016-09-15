@@ -13,10 +13,12 @@ namespace bzale.Web.Controllers
     public class ManagementController : Controller
     {
         private AccountService _accountservice;
+        private VatValidationService _vatvalidationservice;
 
         public ManagementController()
         {
             _accountservice = new AccountService();
+            _vatvalidationservice = new VatValidationService();
         }
         // GET: /<controller>/
         public IActionResult Index()
@@ -25,9 +27,10 @@ namespace bzale.Web.Controllers
         }
 
         [HttpGet]
-
         public IActionResult CompanyManagement()
         {
+
+            var vatvalidation = _vatvalidationservice.GetVatValidation("DK", "78161418");
             return View();
         }
         [HttpGet]
@@ -40,9 +43,8 @@ namespace bzale.Web.Controllers
         [HttpGet]
         public IActionResult CompanySaleListings()
         {
-            var companyinfo = _accountservice.GetCompanyInformation(CurrentUser.CompanyVAT);
 
-            return View(companyinfo);
+            return View();
         }
 
         [HttpGet]

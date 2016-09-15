@@ -1,4 +1,5 @@
 ﻿
+using bzale.Common;
 using System.ComponentModel.DataAnnotations;
 
 namespace bzale.ViewModel
@@ -10,6 +11,8 @@ namespace bzale.ViewModel
  
         [Display(Name = "CVR")]
         public string VAT { get; set; }
+        [Display(Name="Landekode")]
+        public eCountryCode CountryCode { get; set; }
  
         [Display(Name = "Navn")]
         public string Name { get; set; }

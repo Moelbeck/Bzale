@@ -1,5 +1,5 @@
---temp-output:C:\Work\BZale\BzaleService\bzale.Core.TestClient\obj\Debug\netcoreapp1.0\
---out:C:\Work\BZale\BzaleService\bzale.Core.TestClient\bin\Debug\netcoreapp1.0\bzale.Core.TestClient.dll
+--temp-output:C:\Work\BZale\Bzale\BzaleService\bzale.Core.TestClient\obj\Debug\netcoreapp1.0\
+--out:C:\Work\BZale\Bzale\BzaleService\bzale.Core.TestClient\bin\Debug\netcoreapp1.0\bzale.Core.TestClient.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -89,6 +89,5 @@
 --reference:C:\Users\Moelbeck\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\Moelbeck\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\Moelbeck\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
---reference:C:\Work\BZale\BzaleService\bzale.Core.Common\bin\Debug\netstandard1.6\bzale.Core.Common.dll
-C:\Work\BZale\BzaleService\bzale.Core.TestClient\Program.cs
-C:\Work\BZale\BzaleService\bzale.Core.TestClient\Properties\AssemblyInfo.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.TestClient\Program.cs
+C:\Work\BZale\Bzale\BzaleService\bzale.Core.TestClient\Properties\AssemblyInfo.cs

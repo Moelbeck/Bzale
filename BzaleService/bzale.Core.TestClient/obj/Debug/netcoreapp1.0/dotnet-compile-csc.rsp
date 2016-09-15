@@ -7,8 +7,8 @@
 -debug:full
 -nostdlib
 -nologo
-"C:\Work\BZale\BzaleService\bzale.Core.TestClient\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
--out:"C:\Work\BZale\BzaleService\bzale.Core.TestClient\bin\Debug\netcoreapp1.0\bzale.Core.TestClient.dll"
+"C:\Work\BZale\Bzale\BzaleService\bzale.Core.TestClient\obj\Debug\netcoreapp1.0\dotnet-compile.assemblyinfo.cs"
+-out:"C:\Work\BZale\Bzale\BzaleService\bzale.Core.TestClient\bin\Debug\netcoreapp1.0\bzale.Core.TestClient.dll"
 -r:"C:\Users\Moelbeck\.nuget\packages\Microsoft.CSharp\4.0.1\ref\netstandard1.0\Microsoft.CSharp.dll"
 -r:"C:\Users\Moelbeck\.nuget\packages\Microsoft.VisualBasic\10.0.1\ref\netstandard1.1\Microsoft.VisualBasic.dll"
 -r:"C:\Users\Moelbeck\.nuget\packages\Microsoft.Win32.Primitives\4.0.1\ref\netstandard1.3\Microsoft.Win32.Primitives.dll"
@@ -85,6 +85,5 @@
 -r:"C:\Users\Moelbeck\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll"
 -r:"C:\Users\Moelbeck\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll"
 -r:"C:\Users\Moelbeck\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll"
--r:"C:\Work\BZale\BzaleService\bzale.Core.Common\bin\Debug\netstandard1.6\bzale.Core.Common.dll"
-"C:\Work\BZale\BzaleService\bzale.Core.TestClient\Program.cs"
-"C:\Work\BZale\BzaleService\bzale.Core.TestClient\Properties\AssemblyInfo.cs"
+"C:\Work\BZale\Bzale\BzaleService\bzale.Core.TestClient\Program.cs"
+"C:\Work\BZale\Bzale\BzaleService\bzale.Core.TestClient\Properties\AssemblyInfo.cs"

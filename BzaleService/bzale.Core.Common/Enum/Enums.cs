@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Resources;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.ApplicationInsights.AspNetCore;
 
 namespace bzale.Common
 {
@@ -89,7 +91,7 @@ namespace bzale.Common
         Update =2,
         Deleted=4,
         Search=8,
-            Comment = 16
+        Comment = 16
     }
 
     public enum eLoginType
@@ -102,7 +104,7 @@ namespace bzale.Common
     }
 
     [Flags]
-    public enum SaleListingType
+    public enum eSaleListingType
     {
         None,
         Bed,
@@ -127,5 +129,64 @@ namespace bzale.Common
         Table,
         Telephone
 
+    }
+
+
+    public enum eCountryCode
+    {
+        None,
+        /// Austria --> 
+        //[Display(ResourceType = typeof(Resources), Name = "AT")]
+        AT, 
+        /// Belgium --> 
+        BE, 
+        /// Bulgaria --> 
+        BG, 
+        /// Cyprus -->
+        CY, 
+        /// Czech Republic --> 
+        CZ, 
+        /// Germany --> 
+        DE, 
+        /// Denmark --> 
+        DK, 
+        /// Estonia 
+        EE, 
+        /// Greece 
+        EL, 
+        /// Spain 
+        ES, 
+        /// Finland 
+        FI, 
+        /// France 
+        FR,
+        /// United Kingdom 
+        GB, 
+        /// Hungary 
+        HU, 
+        /// Ireland 
+        IE, 
+        /// Italy 
+        IT, 
+        /// Lithuania 
+        LT, 
+        /// Luxembourg 
+        LU, 
+        /// Malta 
+        MT, 
+        /// The Netherlands 
+        NL, 
+        /// Poland 
+        PL, 
+        /// Portugal 
+        PT, 
+        /// Romania 
+        RO, 
+        /// Sweden 
+        SE, 
+        /// Slovenia 
+        SI, 
+        /// Slovakia 
+        SK,
     }
 }
