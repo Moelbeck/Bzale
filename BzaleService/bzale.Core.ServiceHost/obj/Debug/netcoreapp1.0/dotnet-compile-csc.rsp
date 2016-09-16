@@ -58,6 +58,7 @@
 -r:"C:\Users\Moelbeck\.nuget\packages\Microsoft.EntityFrameworkCore\1.0.0\lib\netstandard1.3\Microsoft.EntityFrameworkCore.dll"
 -r:"C:\Users\Moelbeck\.nuget\packages\Microsoft.EntityFrameworkCore.Design\1.0.0-preview2-final\lib\netcoreapp1.0\Microsoft.EntityFrameworkCore.Design.dll"
 -r:"C:\Users\Moelbeck\.nuget\packages\Microsoft.EntityFrameworkCore.Design.Core\1.0.0-preview2-final\lib\netstandard1.3\Microsoft.EntityFrameworkCore.Design.Core.dll"
+-r:"C:\Users\Moelbeck\.nuget\packages\Microsoft.EntityFrameworkCore.InMemory\1.0.0\lib\netstandard1.3\Microsoft.EntityFrameworkCore.InMemory.dll"
 -r:"C:\Users\Moelbeck\.nuget\packages\Microsoft.EntityFrameworkCore.Relational\1.0.0\lib\netstandard1.3\Microsoft.EntityFrameworkCore.Relational.dll"
 -r:"C:\Users\Moelbeck\.nuget\packages\Microsoft.EntityFrameworkCore.Relational.Design\1.0.0\lib\netstandard1.3\Microsoft.EntityFrameworkCore.Relational.Design.dll"
 -r:"C:\Users\Moelbeck\.nuget\packages\Microsoft.EntityFrameworkCore.SqlServer\1.0.0\lib\netstandard1.3\Microsoft.EntityFrameworkCore.SqlServer.dll"

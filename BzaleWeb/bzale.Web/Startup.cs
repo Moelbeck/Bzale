@@ -36,12 +36,14 @@ namespace bzale.Web
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
                 options.CookieName = ".Bzale";
             });
+            //services.AddScoped<EnsureUserLoggedIn>();
+
             services.AddMvc(opts =>
             {
-                opts.Filters.Add(typeof(VerifiedCompanyAttribute));
 
             });
-            services.AddDistributedMemoryCache();
+            //services.AddScoped<EnsureUserLoggedInAttribute>();
+            //services.AddDistributedMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -5,23 +5,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using bzale.WebsiteService;
 using bzale.Web.Model;
+using bzale.Filter;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace bzale.Web.Controllers
 {
-    public class ManageController : Controller
+    public class ManagementController : Controller
     {
         private AccountService _accountservice;
         private VatValidationService _vatvalidationservice;
 
-        public ManageController()
+        public ManagementController()
         {
             _accountservice = new AccountService();
             _vatvalidationservice = new VatValidationService();
         }
         // GET: /<controller>/
-        [VerifiedCompany]
+        [EnsureUserLoggedIn]
         public IActionResult Index()
         {
             return View();
@@ -35,6 +36,7 @@ namespace bzale.Web.Controllers
             return View();
         }
         [HttpGet]
+        [EnsureUserLoggedIn]
         public IActionResult AccountManagement()
         {
             var accountinfo = _accountservice.GetAccountInformation(CurrentUser.ID).Result;
@@ -42,6 +44,8 @@ namespace bzale.Web.Controllers
         }
 
         [HttpGet]
+        [EnsureUserLoggedIn]
+        [EnsureValidCompany]
         public IActionResult CompanySaleListings()
         {
 
@@ -49,6 +53,7 @@ namespace bzale.Web.Controllers
         }
 
         [HttpGet]
+        [EnsureUserLoggedIn]
         public IActionResult SavedSaleListings()
         {
             return View();

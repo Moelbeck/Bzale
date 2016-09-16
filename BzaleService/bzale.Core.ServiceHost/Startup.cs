@@ -42,7 +42,8 @@ namespace bzale.Core.ServiceHost
             services.AddEntityFramework();
 
             services.AddSingleton<IMapper>(sp => _mapperConfiguration.CreateMapper());
-            services.AddDbContext<BzaleDatabaseContext>(options => options.UseSqlServer(@"Data Source=CHRISTOPHER\SQLEXPRESS;Initial Catalog=BzaleDatabase;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            //services.AddDbContext<BzaleDatabaseContext>(options => options.UseSqlServer(@"Data Source=CHRISTOPHER\SQLEXPRESS;Initial Catalog=BzaleDatabase;Integrated Security=True;Connect Timeout=15;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            services.AddDbContext<BzaleDatabaseContext>(options => options.UseInMemoryDatabase());
 
             services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();

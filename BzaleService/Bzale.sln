@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2F9ADDFC-53B4-4B3A-812E-FE68DACE5670}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		..\BzaleWeb\global.json = ..\BzaleWeb\global.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bzale.server.vat.WebApi", "bzale.server.WebApi.Vat\bzale.server.vat.WebApi.csproj", "{E2287731-D732-4E87-98EE-7A70EACF636C}"

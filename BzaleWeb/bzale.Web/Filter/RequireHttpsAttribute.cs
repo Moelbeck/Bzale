@@ -4,27 +4,51 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using Microsoft.AspNet.Mvc.Filters;
 using bzale.Web.Model;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Authorization;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc;
 
 namespace bzale.Filter
 {
-
-    public class VerifiedCompanyAttribute : AuthorizeFilter
+    public class EnsureUserLoggedInAttribute : Attribute,
+            IResourceFilter
     {
-        public VerifiedCompanyAttribute(AuthorizationPolicy policy): base(policy)
+        public void OnResourceExecuting(ResourceExecutingContext context)
+        {
+            if (string.IsNullOrEmpty(CurrentUser.Email))
+            {
+                context.Result = new ContentResult()
+                {
+                    Content = "Ingen adgang, bruger skal være logget ind"
+                };
+            }
+        }
+
+        public void OnResourceExecuted(ResourceExecutedContext context)
         {
         }
-        public override Task OnAuthorizationAsync(Microsoft.AspNet.Mvc.Filters.AuthorizationContext context)
-        {
-            if (CurrentUser.CanSell)
-            {
-                return Task.FromResult(0);
-            }
+    }
 
-            return base.OnAuthorizationAsync(context);
+    public class EnsureValidCompanyAttribute : Attribute,
+        IResourceFilter
+    {
+        public void OnResourceExecuting(ResourceExecutingContext context)
+        {
+            if (!CurrentUser.CanSell)
+            {
+                context.Result = new ContentResult()
+                {
+                    Content = "Ingen adgang, en virksomhed med gyldigt CPR skal tilføjes for dette"
+                };
+            }
+        }
+
+        public void OnResourceExecuted(ResourceExecutedContext context)
+        {
         }
     }
 }
