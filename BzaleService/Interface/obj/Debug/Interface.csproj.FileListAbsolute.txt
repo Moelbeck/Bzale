@@ -1,0 +1,9 @@
+C:\Work\BZale\Bzale\BzaleService\Interface\bin\Debug\Interface.dll
+C:\Work\BZale\Bzale\BzaleService\Interface\bin\Debug\Interface.pdb
+C:\Work\BZale\Bzale\BzaleService\Interface\bin\Debug\Common.dll
+C:\Work\BZale\Bzale\BzaleService\Interface\bin\Debug\Model.dll
+C:\Work\BZale\Bzale\BzaleService\Interface\bin\Debug\Common.pdb
+C:\Work\BZale\Bzale\BzaleService\Interface\bin\Debug\Model.pdb
+C:\Work\BZale\Bzale\BzaleService\Interface\obj\Debug\Interface.csprojResolveAssemblyReference.cache
+C:\Work\BZale\Bzale\BzaleService\Interface\obj\Debug\Interface.dll
+C:\Work\BZale\Bzale\BzaleService\Interface\obj\Debug\Interface.pdb

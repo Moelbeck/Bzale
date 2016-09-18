@@ -1,0 +1,18 @@
+﻿@{Layout= "../Shared/_Layout.cshtml"; }
+@using bzale.Web.Model;
+
+    <div id="accountmanagerMenu">
+        <ul class="vert-one">
+            @Html.ActionLink("Mine Oplysninger", "AccountManagement", "Management")
+            @Html.ActionLink("Virksomhedens Oplysninger", "CompanyManagement", "Management")
+            @if (CurrentUser.CanSell)
+            {
+                @Html.ActionLink("Mine annoncer","CompanySaleListings","Management")
+                @Html.ActionLink("Gemte annoncer", "SavedSaleListings", "Management")
+            }
+        </ul>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+

@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "_ManagementLayout.cshtml";
+}
+
+
+@model depross.ViewModel.CompanyDTO
+@using bzale.Web.Model;
+<div class="row">
+    <div class="col-md-8">
+        <section>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                        @Html.BeginForm("_CompanyPartial", "Management", FormMethod.Get){ 
+                        <div class="form-group">
+                            <div data- class="col-md-offset-2 col-md-10">
+                                <h1>Indtast CVR nummer for at blive valideret.</h1>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                @Html.DisplayNameFor(e => e.CountryCode)
+                                @*@Html.DropDownListFor(m => m.CountryCode, Html.EnumDropDownListFor<bzale.Common.eCountryCode>())*@
+                                @Html.EnumDropDownListFor(e=>e.CountryCode)
+                                @Html.DisplayNameFor(e => e.VAT)
+                                @Html.TextBoxFor(e => e.VAT)
+                            </div>
+                        </div>
+
+                        <div data-bind="" class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <button type="submit" class="btn btn-default">Log in</button>
+                            </div>
+                        </div>
+                    }
+                    <div id="content">
+
+                    </div>
+ 
+                    @*@{ 
+                        await Html.RenderPartialAsync("_CompanyPartial");
+                        
+                     }*@
+        
+                </div>
+            </div>
+          
+        </section>
+    </div>
+</div>

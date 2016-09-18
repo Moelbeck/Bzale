@@ -1,0 +1,13 @@
+C:\Work\BZale\Bzale\BzaleService\Service\obj\Debug\Service.csprojResolveAssemblyReference.cache
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Service.dll
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Service.pdb
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\AutoMapper.dll
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Common.dll
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Interface.dll
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Model.dll
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Common.pdb
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Interface.pdb
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Model.pdb
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\AutoMapper.xml
+C:\Work\BZale\Bzale\BzaleService\Service\obj\Debug\Service.dll
+C:\Work\BZale\Bzale\BzaleService\Service\obj\Debug\Service.pdb
