@@ -6,7 +6,7 @@ namespace depross.ViewModel
     {
         public string FileName { get; set; }
 
-        public eJobType JobType { get; set; }
+        //public eJobType JobType { get; set; }
         public eImageType ImageType { get; set; }
         public byte[] Content { get; set; }
         

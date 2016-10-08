@@ -8,6 +8,10 @@ namespace depross.Repository
 {
     public class CompanyRepository : GenericRepository<Company>, ICompanyRepository
     {
+        public CompanyRepository():this(new BzaleDatabaseContext())
+        {
+
+        }
         public CompanyRepository(BzaleDatabaseContext context) : base(context)
         {
 
@@ -23,9 +27,7 @@ namespace depross.Repository
         }
         public Company GetCompany(int id)
         {
-            Company company = null;
-            company = GetSingle(e => e.ID == id);
-            return company;
+            return GetSingle(e => e.ID == id); ;
         }
 
         public Company AddNewCompany(Company newCompany)
@@ -33,10 +35,11 @@ namespace depross.Repository
             //We need to check if the person have verified it somehow
             if (!IsVatInDatabase(newCompany.VAT))
             {
-                Add(newCompany);
+               var added = Add(newCompany);
                 Save();
+                return added;
             }
-            return GetSingle(e=>e.VAT.Equals(newCompany.VAT,StringComparison.Ordinal));
+            return null;
         }
 
         public bool IsVatInDatabase(string vat)
@@ -48,7 +51,7 @@ namespace depross.Repository
         {
             Edit(updatedCompany);
             Save();
-            return GetSingle(e => e.ID == updatedCompany.ID);
+            return updatedCompany;
         }
 
         public bool IsEmailInDatabase(string email)

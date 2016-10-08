@@ -19,16 +19,6 @@ namespace depross.ViewModel
         [Required]
         [Display(Name = "Bekræft email")]
         public string ConfirmEmail { get; set; }
-
-        [Display(Name = "CVR")]
-        
-        public string VAT { get; set; }
-
-        [Display(Name = "Virksomhedens navn")]
-        public string CompanyName { get; set; }
-
-        [Display(Name = "virksomhedens adresse")]
-        public string CompanyAddress { get; set; }
          
         [Required]
         [Display(Name = "Password")]

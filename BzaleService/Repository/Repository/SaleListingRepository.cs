@@ -52,23 +52,34 @@ namespace depross.Repository
         }
         public List<SaleListing> GetSaleListingsForCompany(string vatnumber, int page, int size)
         {
-            return Get(e => e.Owner.VAT == vatnumber && e.Deleted == null,page,size).ToList();
+            return Get(e => e.Owner.VAT == vatnumber && e.Deleted == null)
+                //.Skip((page - 1) * size).Take(size)
+                .ToList();
         }
         public List<SaleListing> GetSaleListingsForCompany(int id, int page, int size)
         {
-            return Get(e => e.Owner.ID == id && e.Deleted == null,page,size).ToList();
+            return Get(e => e.Owner.ID == id && e.Deleted == null)
+                //.Skip((page - 1) * size).Take(size)
+                .ToList();
         }
         public List<SaleListing> GetSaleListingsForCategory(int id, int page, int size)
         {
-            return Get(e => e.Category.ID == id, page, size).ToList();
+            return Get(e => e.ProductType.Category.ID == id)
+                //.Skip((page - 1) * size).Take(size)
+                .ToList();
         }
         public List<SaleListing> GetSaleListingsBySearchString(string search, int page, int size)
         {
-            return Get(e => e.Title.Contains(search) || e.Description.Contains(search) || e.Product.Manufacturer.Name.Contains(search) || e.Product.Name.Contains(search), page, size).ToList();
+            return Get(e => e.Title.Contains(search) || e.Description.Contains(search) || e.ProductType.Category.Name.Contains(search) 
+            || e.ProductType.Name.Contains(search))
+            //.Skip((page - 1) * size).Take(size)
+            .ToList();
         }
         public List<SaleListing> GetDeletedSaleListingsForCompany(string vatnumber,int page, int size)
         {
-            return Get(e => e.Owner.VAT == vatnumber && e.Deleted != null,page,size).ToList();
+            return Get(e => e.Owner.VAT == vatnumber && e.Deleted != null)
+               // .Skip((page - 1) * size).Take(size)
+                .ToList();
         }
 
         public void AddNewImageForSaleListing(int SaleListingid,Image newimage)

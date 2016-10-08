@@ -12,7 +12,7 @@ namespace bzale.WebsiteService
     public class CategoryService
     {
 
-        private string accountURI = string.Format("{0}{1}", Konstanter.BASEURI, "CategoryWeb/");
+        private string accountURI = string.Format("{0}{1}", Konstanter.BASEURI, "Category/");
         private HttpBaseClient client;
 
         public CategoryService()
@@ -21,8 +21,9 @@ namespace bzale.WebsiteService
 
         }
         #region GET
-        public async Task<List<CategoryDTO>> GetAllMainCategories(int page)
+        public async Task<List<CategoryDTO>> GetAllMainCategories(int page, int size =0)
         {
+            if(size == 0) { size = Konstanter.PAGE_SIZE; }
             string uri = string.Format("allmain?page={0}&size={1}", page, Konstanter.PAGE_SIZE);
             var categories = await client.GetResponseObject<CategoryDTO, List<CategoryDTO>>(uri, eHttpMethodType.GET, null);
             return categories;
@@ -45,6 +46,19 @@ namespace bzale.WebsiteService
             string uri = string.Format("bysearch/{0}?page={1}&size={2}", searchstring,page,Konstanter.PAGE_SIZE);
             var categories = await client.GetResponseObject<CategoryDTO, List<CategoryDTO>>(uri, eHttpMethodType.GET, null);
             return categories;
+        }
+        public async Task<List<ProductTypeDTO>> GetProductTypesForCategory(int id, int page)
+        {
+            string uri = string.Format("sub/{0}/producttypes?page={1}&size={2}", id, page, Konstanter.PAGE_SIZE);
+            var producttype = await client.GetResponseObject<ProductTypeDTO, List<ProductTypeDTO>>(uri, eHttpMethodType.GET, null);
+            return producttype;
+        }
+        public async Task<ProductTypeDTO> GetProductTypeByID(int id)
+        {
+
+            string uri = string.Format("sub/{0}/ producttype", id);
+            var producttype = await client.GetResponseObject<ProductTypeDTO, ProductTypeDTO>(uri, eHttpMethodType.GET, null);
+            return producttype;
         }
 
         #endregion

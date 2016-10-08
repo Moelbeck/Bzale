@@ -11,3 +11,7 @@ C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Model.pdb
 C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\AutoMapper.xml
 C:\Work\BZale\Bzale\BzaleService\Service\obj\Debug\Service.dll
 C:\Work\BZale\Bzale\BzaleService\Service\obj\Debug\Service.pdb
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Repository.dll
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\EntityFramework.dll
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\Repository.pdb
+C:\Work\BZale\Bzale\BzaleService\Service\bin\Debug\EntityFramework.xml

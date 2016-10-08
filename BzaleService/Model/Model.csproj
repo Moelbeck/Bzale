@@ -44,12 +44,11 @@
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Advertisement.cs" />
     <Compile Include="Model\Advertiser.cs" />
-    <Compile Include="Model\Base\BaseCategory.cs" />
     <Compile Include="Model\Base\BaseComment.cs" />
     <Compile Include="Model\Base\BaseContactInfo.cs" />
     <Compile Include="Model\Base\BaseLog.cs" />
     <Compile Include="Model\Base\Entity.cs" />
-    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\MainCategory.cs" />
     <Compile Include="Model\CategoryPreferences.cs" />
     <Compile Include="Model\Comment.cs" />
     <Compile Include="Model\CommentAnswer.cs" />
@@ -59,9 +58,10 @@
     <Compile Include="Model\Log\LogUserSaleListing.cs" />
     <Compile Include="Model\Log\LogUserSearch.cs" />
     <Compile Include="Model\Manufacturer.cs" />
-    <Compile Include="Model\Product.cs" />
+    <Compile Include="Model\ProductType.cs" />
     <Compile Include="Model\Rating.cs" />
     <Compile Include="Model\SaleListing.cs" />
+    <Compile Include="Model\SubCategory.cs" />
     <Compile Include="Model\Subscription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

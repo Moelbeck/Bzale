@@ -7,9 +7,7 @@ namespace depross.Interfaces
     {
         List<ManufacturerDTO> GetManufacturersInCategory(int categoryid);
         ManufacturerDTO GetManuFacturer(int id);
-        List<ProductDTO> GetProductsByManufacturer(int id);
 
-        void CreateProduct(ProductDTO viewmodel);
         void CreateManufacturer(ManufacturerDTO viewmodel);
     }
 }

@@ -8,7 +8,7 @@ namespace depross.Common
 {
     public class CompanyUpdateRequest
     {
-        public AccountDTO Account { get; set; }
+        public int AccountID { get; set; }
         public CompanyDTO Company { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using depross.Model.Base;
+using System.Collections.Generic;
 
 namespace depross.Model
 {
@@ -12,8 +13,9 @@ namespace depross.Model
 
         public string Name { get; set; }
         public string VAT { get; set; }
-        public bool IsVerified { get; set; }
 
         public Image Image { get; set; }
+
+        public virtual List<SaleListing> SaleListings { get; set; }
     }
 }

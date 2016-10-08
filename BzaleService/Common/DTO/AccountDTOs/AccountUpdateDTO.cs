@@ -19,7 +19,9 @@ namespace depross.ViewModel
         public eGender Gender { get; set; }
          
         [Display(Name = "Land")]
-        public string Country { get; set; }
+        public eCountryCode CountryCode { get; set; }
+        [Display(Name ="By")]
+        public string City { get; set; }
         [Display(Name ="Postnummer")]
         public int? PostalCode { get; set; }
          

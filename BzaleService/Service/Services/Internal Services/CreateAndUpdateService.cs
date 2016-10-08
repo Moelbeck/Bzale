@@ -18,46 +18,24 @@ namespace depross.service
                 Name = newcompany.Name,
                 PostalCode = newcompany.PostalCode,
                 Address = newcompany.Address,
-                Country = newcompany.Country,
+                CountryCode = newcompany.CountryCode,
                 Email = newcompany.Email,
                 Phone = newcompany.Phone,
-                IsVerified = false,
-                VAT = newcompany.VAT
+                VAT = newcompany.VAT,
+                City = newcompany.City,
+                Created = DateTime.Now
             };
             return copy;
         }
 
-        internal Company CreateCompanyObject(string vat, string companyName, string companyAddress)
+        public SaleListing CreateSaleListingObject(SaleListing newsalelisting, Account owner, ProductType product)
         {
-            Company copy = new Company
-            {
-                Name = companyName,
-                Address = companyAddress,
-                VAT = vat,
-                IsVerified = false
-            };
-            return copy;
-        }
-        public SaleListing CreateSaleListingObject(SaleListingCreateDTO newsalelisting, Account owner, ProductType product,Category category)
-        {
-            SaleListing salelisting = new SaleListing
-            {
-                CreatedBy = owner,
-                Owner = owner.Company,
-                Product = product,
-                Comments = new List<Comment>(),
-                ExpirationDate = DateTime.Now.AddDays(DAYSBEFOREEXPIRING),
-                Amount = newsalelisting.Amount,
-                AmountType = newsalelisting.AmountType,
-                Category = category,
-                Description = newsalelisting.Description,
-                Price = newsalelisting.Price,
-                Title = newsalelisting.Title,
-                
-                Subscription = new Subscription(),
-                
-                
-            };
+            SaleListing salelisting = newsalelisting;
+            salelisting.ExpirationDate = DateTime.Now.AddDays(DAYSBEFOREEXPIRING);
+            salelisting.Owner = owner.Company;
+            salelisting.ProductType = product;
+            salelisting.Subscription = new Subscription(); //might handled otherwise.
+            salelisting.Comments = new List<Comment>();
             return salelisting;
 
         }
@@ -69,10 +47,11 @@ namespace depross.service
                 Name = updated.Name.Trim().Any() ? updated.Name : current.Name,
                 PostalCode = updated.PostalCode,
                 Address = updated.Address,
-                Country = updated.Country,
+                CountryCode = updated.CountryCode,
+                City = updated.City,
                 Email = updated.Email.IsValidEmail() ? updated.Email : current.Email,
                 Phone = updated.Phone.IsValidPhoneNr() ? updated.Phone : current.Phone,
-                IsVerified = current.IsVerified
+                VAT = updated.VAT
             };
             return copy;
         }
@@ -92,7 +71,8 @@ namespace depross.service
                 Salt = current.Salt,
                 Company = current.Company,
                 HasValidatedMail = current.HasValidatedMail,
-                Country = updated.Country,
+                CountryCode = updated.CountryCode,
+                City = updated.City,
                 PostalCode = updated.PostalCode
             };
             return copy;
@@ -110,17 +90,34 @@ namespace depross.service
                 ID = current.ID,
                 CreatedBy = current.CreatedBy,
                 Comments = current.Comments,
-                Amount = updated.Amount,
-                AmountType = updated.AmountType,
                 Images = current.Images, //Does not update images from this!
-                Category = updated.Category,
                 Description = updated.Description,
                 ExpirationDate = current.ExpirationDate,
                 Price = updated.Price,
                 Title = updated.Title,
                 Owner = current.Owner,
                 Subscription = current.Subscription,
-                Product = updated.Product
+                ProductType = updated.ProductType,
+                Color = updated.Color,
+                CPU = updated.CPU,
+                Depth = updated.Depth,
+                FuelType = updated.FuelType,
+                Harddisk = updated.Harddisk,
+                Height = updated.Height,
+                Kilometers = updated.Kilometers,
+                KmPrLiter = updated.KmPrLiter,
+                LastService = updated.LastService,
+                Manufacturer = updated.Manufacturer,
+                Length = updated.Length,
+                Model = updated.Model,
+                NoOfDoors  = updated.NoOfDoors,
+                RAM = updated.RAM,
+                ScreenSize = updated.ScreenSize,
+                Thickness = updated.Thickness,
+                VatPayed = updated.VatPayed,
+                Weight = updated.Weight,
+                Width = updated.Width,
+                Year = updated.Year
             };
             return copy;
         }

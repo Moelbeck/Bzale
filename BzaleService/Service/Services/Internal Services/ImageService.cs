@@ -23,9 +23,9 @@ namespace depross.Service
         /// </summary>
         /// <param name="imagetype"></param>
         /// <returns></returns>
-        public string GetFolder(eImageType imagetype, eJobType jobtype)
+        public string GetFolder(eImageType imagetype)
         {
-            var folderpath = Path.Combine(Imagefolder, Enum.GetName(typeof(eImageType), jobtype), Enum.GetName(typeof(eImageType), imagetype));
+            var folderpath = Path.Combine(Imagefolder, Enum.GetName(typeof(eImageType), imagetype));
             string directorypath;
             if (!Directory.Exists(folderpath))
             {
@@ -62,7 +62,7 @@ namespace depross.Service
             if (ValidateExtension(Path.GetExtension(imageviewmodel.FileName)))
             {
                 string imagename = GenerateImageName(imageviewmodel.FileName);
-                string imagePathTemp = GetFolder(imageviewmodel.ImageType, imageviewmodel.JobType);
+                string imagePathTemp = GetFolder(imageviewmodel.ImageType);
                 var imagePathFinal = Path.Combine(imagePathTemp, imagename);
 
                 using (FileStream fs = File.Create(imagePathFinal))

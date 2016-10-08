@@ -8,14 +8,12 @@ namespace depross.Model
     /// </summary>
     public class Manufacturer : Entity
     {
-
-
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        //List of categories this manufacturer belongs to
-        public virtual List<Category> Categories { get; set; }
+        //List of product tyåes this manufacturer produces 
+        public virtual List<ProductType> ProductTypes { get; set; }
 
     }
 }

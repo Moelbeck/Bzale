@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using depross.Interfaces;
 using depross.Model;
+using depross.Repository;
+using depross.Repository.DatabaseContext;
 using depross.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -15,9 +17,9 @@ namespace depross.WebService
 
         private readonly IRatingRepository _ratingRepository;
 
-        public RatingWebService(IRatingRepository ratingrepo)
+        public RatingWebService()
         {
-            _ratingRepository = ratingrepo;
+            _ratingRepository = new RatingRepository(new BzaleDatabaseContext());
         }
         public bool CreateRating(RatingDTO viewmodel)
         {

@@ -7,7 +7,7 @@ namespace bzale.WebsiteService
 {
     public class RatingService
     {
-        private string ratingURI= string.Format("{0}{1}", Konstanter.BASEURI, "RatingWeb/");
+        private string ratingURI= string.Format("{0}{1}", Konstanter.BASEURI, "Rating/");
         private HttpBaseClient client;
 
         public RatingService()

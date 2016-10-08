@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using depross.Interfaces;
 using depross.Model;
+using depross.Repository;
+using depross.Repository.DatabaseContext;
 using depross.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -12,21 +14,24 @@ namespace depross.WebService
     // NOTE: In order to launch WCF Test Client for testing this service, please select CategoryService.svc or CategoryService.svc.cs at the Solution Explorer and start debugging.
     public class CategoryWebService : ICategoryWebService
     {
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly IMainCategoryRepository _categoryRepository;
         private readonly ISubCategoryRepository _subcategoryRepository;
+        private IProductTypeRepository _productRepository;
 
-        public CategoryWebService(ICategoryRepository cateRepo,ISubCategoryRepository subRepo)
+        public CategoryWebService()
         {
-            _categoryRepository = cateRepo;
-            _subcategoryRepository = subRepo;
+            BzaleDatabaseContext context = new BzaleDatabaseContext();
+            _categoryRepository = new MainCategoryRepository(context);
+            _subcategoryRepository = new SubCategoryRepository(context);
+            _productRepository = new ProductTypeRepository(context);
         }
 
         public List<CategoryDTO> GetMainCategories(int page, int size)
         {
             try
             {
-                var allcategories = _categoryRepository.GetCategories(page, size);
-                return allcategories.Select(Mapper.Map<Category, CategoryDTO>).ToList();
+                var allcategories = _categoryRepository.GetMainCategories(page, size);
+                return allcategories.Select(Mapper.Map<MainCategory, CategoryDTO>).ToList();
             }
             catch (Exception ex)
             {
@@ -48,13 +53,13 @@ namespace depross.WebService
                 throw;
             }
         }
-        public CategoryDTO GetCategory(int id)
+        public CategoryDTO GetMainCategory(int id)
         {
             try
             {
 
-                var area = _categoryRepository.GetCategory(id);
-                return Mapper.Map<Category, CategoryDTO>(area);
+                var area = _categoryRepository.GetMainCategory(id);
+                return Mapper.Map<MainCategory, CategoryDTO>(area);
 
             }
             catch (Exception ex)
@@ -63,18 +68,16 @@ namespace depross.WebService
                 throw;
             }
         }
-
-
-
-        public List<CategoryDTO> GetCategoriesBySearchString(string searchstring, int page,int size, int userid)
+        
+        public List<CategoryDTO> GetMainCategoriesBySearchString(string searchstring, int page,int size, int userid)
         {
             try
             {
-                List<Category> categories = !string.IsNullOrWhiteSpace(searchstring) ? 
-                    _categoryRepository.GetCategoriesBySearchString(searchstring, page, size) 
-                    : new List<Category>();
+                List<MainCategory> categories = !string.IsNullOrWhiteSpace(searchstring) ? 
+                    _categoryRepository.GetCategoriesByString(searchstring, page, size) 
+                    : new List<MainCategory>();
                 List<CategoryDTO> allsearchedproducts = new List<CategoryDTO>();
-                allsearchedproducts.AddRange(categories.Select(Mapper.Map<Category, CategoryDTO>));
+                allsearchedproducts.AddRange(categories.Select(Mapper.Map<MainCategory, CategoryDTO>));
                 //_log.LogSearch(userid, searchstring);
                 return allsearchedproducts;
             }
@@ -89,8 +92,8 @@ namespace depross.WebService
         {
             try
             {
-                Category newcategory = Mapper.Map<CategoryDTO, Category>(viewmodel);
-                _categoryRepository.AddNewCategory(newcategory);
+                MainCategory newcategory = Mapper.Map<CategoryDTO, MainCategory>(viewmodel);
+                _categoryRepository.AddMainCategory(newcategory);
 
             }
             catch (Exception ex)
@@ -105,15 +108,28 @@ namespace depross.WebService
             try
             {
                 SubCategory newcategory = Mapper.Map<CategoryDTO, SubCategory>(viewmodel);
-                var main = _categoryRepository.GetCategory(mainid);
-                main.SubCategories.Add(newcategory);
-                _categoryRepository.UpdateCategory(main);
+                var main = _categoryRepository.GetMainCategory(mainid);
+                newcategory.MainCategory = main;
+                _categoryRepository.UpdateMainCategory(main);
             }
             catch (Exception ex)
             {
 
                 throw;
             }
+        }
+
+
+        public List<ProductTypeDTO> GetProductTypesForSubCategory(int categoryid, int page, int size)
+        {
+            var producttypes = _productRepository.GetAllProductTypesForCategory(categoryid,  page, size);
+            return producttypes.Select(Mapper.Map<ProductType, ProductTypeDTO>).ToList();
+        }
+
+        public ProductTypeDTO GetProdyctType(int typeid)
+        {
+            var producttype = _productRepository.GetProductTypeByID(typeid);
+            return Mapper.Map<ProductType, ProductTypeDTO>(producttype);
         }
 
     }

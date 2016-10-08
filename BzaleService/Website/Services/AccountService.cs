@@ -10,7 +10,7 @@ namespace bzale.WebsiteService
     /// </summary>
     public class AccountService
     {
-        private string accountURI = string.Format("{0}{1}",Konstanter.BASEURI, "AccountWeb/");
+        private string accountURI = string.Format("{0}{1}",Konstanter.BASEURI, "Account/");
         private HttpBaseClient client;
         public AccountService()
         {
@@ -18,6 +18,7 @@ namespace bzale.WebsiteService
         }
 
         #region GET
+
         public async Task<AccountDTO> Login(string username, string password)
         {
             string uri = string.Format("login?username={0}&pass={1}", username, password);
@@ -73,16 +74,16 @@ namespace bzale.WebsiteService
             return user;
         }
 
-        public async Task<AccountDTO> AccCompanyToAccount(int currentaccount, CompanyDTO model)
+        public async Task<CompanyDTO> AddCompanyToAccount(int currentaccount, CompanyDTO model)
         {
-            var user = await client.GetResponseObject<CompanyDTO, AccountDTO>(string.Format("{0}/add", currentaccount), eHttpMethodType.POST, model);
+            var user = await client.GetResponseObject<CompanyDTO, CompanyDTO>(string.Format("{0}/company/add", currentaccount), eHttpMethodType.POST, model);
             return user;
         }
         #endregion
         #region PUT
-        public async Task<AccountDTO> UpdateAccountInformation(AccountUpdateDTO model)
+        public async Task<AccountUpdateDTO> UpdateAccountInformation(AccountUpdateDTO model)
         {
-            var user = await client.GetResponseObject<AccountUpdateDTO, AccountDTO>(string.Format("updateaccountinformation"), eHttpMethodType.PUT, model);
+            var user = await client.GetResponseObject<AccountUpdateDTO, AccountUpdateDTO>(string.Format("updateaccountinformation"), eHttpMethodType.PUT, model);
             return user;
         }
         public async Task<CompanyDTO> UpdateCompanyInformation(CompanyUpdateRequest model)

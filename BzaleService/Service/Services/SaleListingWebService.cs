@@ -2,6 +2,8 @@
 using depross.Common;
 using depross.Interfaces;
 using depross.Model;
+using depross.Repository;
+using depross.Repository.DatabaseContext;
 using depross.service;
 using depross.Service;
 using depross.ViewModel;
@@ -18,41 +20,39 @@ namespace depross.WebService
     
 
         private ISaleListingRepository _saleListingRepository;
-        private ICategoryRepository _categoryRepository;
-        private IProductRepository _productRepository;
+        private IMainCategoryRepository _categoryRepository;
+        private IProductTypeRepository _productRepository;
         private IManufacturerRepository _manufacturerRepository;
         private IAccountRepository _accountRepository;
         private SubscriptionService _subscriptionService;
         private ImageService _imageService;
         private CreateAndUpdateService _createAndUpdateService;
-        public SaleListingWebService(ISaleListingRepository saleRepo, ICategoryRepository catRepo, IProductRepository prodRepo, 
-            IManufacturerRepository manuRepo, IAccountRepository accRepo )
+        public SaleListingWebService( )
         {
-            _saleListingRepository = saleRepo;
-            _categoryRepository = catRepo;
-            _productRepository = prodRepo;
-
-            _manufacturerRepository = manuRepo;
-            _accountRepository = accRepo;
+            BzaleDatabaseContext context = new BzaleDatabaseContext();
+            _saleListingRepository = new SaleListingRepository(context);
+            _categoryRepository = new MainCategoryRepository(context);
+            _productRepository = new ProductTypeRepository(context);
+            _manufacturerRepository = new ManufacturerRepository(context);
+            _accountRepository = new AccountRepository(context);
             _subscriptionService = new SubscriptionService();
             _imageService = new ImageService();
             _createAndUpdateService = new CreateAndUpdateService();
         }
 
 
-        public bool CreateNewSaleListing(SaleListingCreateDTO model)
+        public bool CreateNewSaleListing(SaleListingDTO model)
         {
             try
             {
 
-                Account acc = _accountRepository.GetAccount(model.CreatedById);
-                if (acc.Company.IsVerified)
+                Account acc = _accountRepository.GetAccount(model.CreatedBy.ID);
+                if (acc.Company !=null && !string.IsNullOrEmpty(acc.Company.VAT))
                 {
-                    var product = _productRepository.GetProductByID(model.ProductID);
-                    var category = _categoryRepository.GetCategory(product.Category.ID);
-                    var salelisting = _createAndUpdateService.CreateSaleListingObject(model, acc, product, category);
+                    var sale = Mapper.Map<SaleListingDTO, SaleListing>(model);
+                    var product = _productRepository.GetProductTypeByID(model.ProductType.ID);
+                    var salelisting = _createAndUpdateService.CreateSaleListingObject(sale, acc, product);
                     salelisting = _saleListingRepository.AddSaleListing(salelisting);
-                    //_log.LogSaleListing(salelisting.Owner.ID, salelisting.ID, eLogSaleListingType.Created);
                     return true;
                 }
                 return false;
@@ -64,13 +64,42 @@ namespace depross.WebService
                 return false;
             }
         }
+        public bool DeleteSaleListingByID(int saleID)
+        {
+            try
+            {
 
-        public SaleListingDTO GetSaleListingByID(int id)
+                _saleListingRepository.DeleteSaleListing(saleID);
+                return true;
+
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool UpdateSaleListing(SaleListingDTO viewmodel)
+        {
+            try
+            {
+                SaleListing updated = Mapper.Map<SaleListingDTO, SaleListing>(viewmodel);
+                SaleListing current = _saleListingRepository.GetSaleListing(viewmodel.ID);
+                current = _createAndUpdateService.UpdateSaleListingFields(current, updated);
+                _saleListingRepository.UpdateSaleListing(current);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+                public SaleListingDTO GetSaleListingByID(int id)
         {
             try
             {
                 var salelisting = _saleListingRepository.GetSaleListing(id);
-                //_log.LogSaleListing(salelisting.Owner.ID, salelisting.ID, eLogSaleListingType.Search);
                 SaleListingDTO viewmodelmodel = Mapper.Map<SaleListing, SaleListingDTO>(salelisting);
                 return viewmodelmodel;
 
@@ -82,53 +111,6 @@ namespace depross.WebService
             }
         }
 
-        public bool DeleteSaleListing(SaleListingDTO salelistingviewmodel)
-        {
-            try
-            {
-                SaleListing salelisting = Mapper.Map<SaleListingDTO, SaleListing>(salelistingviewmodel);
-                _saleListingRepository.DeleteSaleListing(salelisting);
-                //_log.LogSaleListing(salelisting.Owner.ID, salelisting.ID, eLogSaleListingType.Deleted);
-                return true;
-
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-        public bool DeleteSaleListingByID(int saleID)
-        {
-            try
-            {
-
-                _saleListingRepository.DeleteSaleListing(saleID);
-                //_log.LogSaleListing(0, saleID, eLogSaleListingType.Deleted);
-                return true;
-
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
-
-        public bool UpdateSaleListing(SaleListingUpdateDTO viewmodel)
-        {
-            try
-            {
-                SaleListing updated = Mapper.Map<SaleListingUpdateDTO, SaleListing>(viewmodel);
-                SaleListing current = _saleListingRepository.GetSaleListing(viewmodel.ID);
-                current = _createAndUpdateService.UpdateSaleListingFields(current, updated);
-                _saleListingRepository.UpdateSaleListing(current);
-                //_log.LogSaleListing(current.Owner.ID, current.ID, eLogSaleListingType.Update);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                return false;
-            }
-        }
         public List<SaleListingDTO> GetSaleListingsForCompany(int companyID, int page, int size)
         {
             try
@@ -161,19 +143,13 @@ namespace depross.WebService
 
         public List<SaleListingDTO> GetSaleListingsBySearchString(string search, int page, int size, int userid)
         {
-            try
-            {
+
                 var salelistings = _saleListingRepository.GetSaleListingsBySearchString(search, page, size);
                 //_log.LogSearch(userid, search);
                 return salelistings.Select(Mapper.Map<SaleListing, SaleListingDTO>).ToList();
-
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
         }
+
+
 
         #region Images
         public bool AddImageSaleListing(SaleListingDTO viewmodel, ImageUploadDTO img)

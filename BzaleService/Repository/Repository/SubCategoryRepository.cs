@@ -16,7 +16,9 @@ namespace depross.WebService
         }
         public List<SubCategory> GetSubCategoriesByMainID(int maincategory,int page, int size)
         {
-            return Get(e => e.MainCategory.ID == maincategory && e.Deleted == null, page, size).ToList();
+            return Get(e => e.MainCategory.ID == maincategory && e.Deleted == null)
+                //.Skip((page - 1) * size).Take(size)
+                .ToList();
         }
 
         public SubCategory GetSubCategory(int categoryid)

@@ -8,7 +8,7 @@ namespace depross.Interfaces
     public interface ISaleListingWebService
     {
  
-        bool CreateNewSaleListing(SaleListingCreateDTO model);
+        bool CreateNewSaleListing(SaleListingDTO model);
 
  
         SaleListingDTO GetSaleListingByID(int id);
@@ -25,12 +25,9 @@ namespace depross.Interfaces
         List<ImageDTO> GetImagesForSaleListing(int salelistingid);
         ImageDTO GetImageForSaleListing(int salelistingid);
 
-
-        bool DeleteSaleListing(SaleListingDTO salelistingviewmodel);
-
         bool DeleteSaleListingByID(int saleID);
 
-        bool UpdateSaleListing(SaleListingUpdateDTO viewmodel);
+        bool UpdateSaleListing(SaleListingDTO viewmodel);
 
         bool AddImageSaleListing(SaleListingDTO viewmodel, ImageUploadDTO img);
 

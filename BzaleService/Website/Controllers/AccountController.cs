@@ -7,7 +7,6 @@ using bzale.Web.Model;
 using bzale.WebsiteService;
 using System.Web.Mvc;
 using depross.ViewModel;
-using depross.Interfaces;
 
 namespace Web2.Controllers
 {
@@ -15,11 +14,11 @@ namespace Web2.Controllers
     //[RequireHttps]
     public class AccountController : Controller
     {
-        private IAccountWebtService _accountservice;
+        private AccountService _accountservice;
         //private UserManager<AccountDTO> _userManager;
-        public AccountController(IAccountWebtService injected)
+        public AccountController()
         {
-            _accountservice = injected;
+            _accountservice = new AccountService();
         }
         //
         // GET: /Account/Login
@@ -41,14 +40,11 @@ namespace Web2.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var account =  _accountservice.Login(model.UserName, model.Password);
+                var account =  await _accountservice.Login(model.UserName, model.Password);
                 if (account != null)
                 {
-
                     CurrentUser.InstantiateCurrentUser(account);
-
                     return RedirectToAction("Index", "Home");
-
                 }
                 else
                 {
@@ -103,6 +99,11 @@ namespace Web2.Controllers
             return View(model);
         }
 
+        public ActionResult Logout()
+        {
+            CurrentUser.SetCurrentUserToNull();
+            return RedirectToAction("Index");
+        }
 
         //Validate if email is already used
         //Must return a JSON

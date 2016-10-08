@@ -27,7 +27,7 @@ namespace depross.Repository
 
        public List<Advertiser> Getadvertisers(int page,int size)
        {
-           return Get(e => e.Deleted == null,page,size).ToList();
+           return Get(e => e.Deleted == null).Skip((page - 1) * size).Take(size).ToList();
        }
 
        public Advertiser AddNewAdvertiser(Advertiser newAdvertiser)
@@ -63,7 +63,7 @@ namespace depross.Repository
         {
             List<Advertisement> advertisements = new List<Advertisement>();
 
-            advertisements = Get(e => e.Advertiser.ID == advertiser.ID,page,size).ToList();
+            advertisements = Get(e => e.Advertiser.ID == advertiser.ID).Skip((page - 1) * size).Take(size).ToList();
             return advertisements;
         }
 

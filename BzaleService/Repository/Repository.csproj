@@ -49,25 +49,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\201610021421539_addedCompanyIDtoAccount.cs" />
+    <Compile Include="Migrations\201610021421539_addedCompanyIDtoAccount.Designer.cs">
+      <DependentUpon>201610021421539_addedCompanyIDtoAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Abstract\GenericRepository.cs" />
+    <Compile Include="Abstract\GenericRepository.cs" />
     <Compile Include="Repository\AccountRepository.cs" />
     <Compile Include="Repository\AdRepository.cs" />
-    <Compile Include="Repository\CategoryRepository.cs" />
+    <Compile Include="Repository\MainCategoryRepository.cs" />
     <Compile Include="Repository\CompanyRepository.cs" />
-    <Compile Include="Repository\context\Context.cs" />
+    <Compile Include="Context\Context.cs" />
     <Compile Include="Repository\LogRepository.cs" />
     <Compile Include="Repository\ManufacturerRepository.cs" />
-    <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\ProductTypeRepository.cs" />
     <Compile Include="Repository\RatingRepository.cs" />
     <Compile Include="Repository\SaleListingRepository.cs" />
     <Compile Include="Repository\SubCategoryRepository.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{122FF6C0-C58D-44E7-94A0-2DC212BF874F}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Interface\Interface.csproj">
       <Project>{1fb91147-f227-48d2-a35a-32bc00b01240}</Project>
       <Name>Interface</Name>
@@ -76,6 +87,11 @@
       <Project>{b86c5cbc-9cba-4a70-a3c9-90845fba8d21}</Project>
       <Name>Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201610021421539_addedCompanyIDtoAccount.resx">
+      <DependentUpon>201610021421539_addedCompanyIDtoAccount.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

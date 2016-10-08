@@ -45,11 +45,15 @@ namespace depross.Repository
         }
         public List<Rating> GetRatingsForCompany(Company company,int page, int size)
         {
-            return Get(e => e.Company.ID == company.ID && e.Deleted ==null,page,size).ToList();
+            return Get(e => e.Company.ID == company.ID && e.Deleted ==null)
+                //.Skip((page - 1) * size).Take(size)
+                .ToList();
         }
         public List<Rating> GetRatingsForCompany(int companyid, int page, int size)
         {
-            return Get(e => e.Company.ID == companyid && e.Deleted == null, page, size).ToList();
+            return Get(e => e.Company.ID == companyid && e.Deleted == null)
+                //.Skip((page - 1) * size).Take(size)
+                .ToList();
         }
     }
 }

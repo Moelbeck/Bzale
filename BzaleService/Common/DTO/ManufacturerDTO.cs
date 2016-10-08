@@ -5,7 +5,7 @@ namespace depross.ViewModel
 {
     public class ManufacturerDTO
     {
-
+        public int ID { get; set; }
         [Display(Name="Navn")]
         public string Name { get; set; }
 
@@ -13,6 +13,6 @@ namespace depross.ViewModel
         public string Description { get; set; }
 
         //List of categories this manufacturer belongs to
-        public virtual List<int> CategoryIDs { get; set; }
+        public virtual List<int> ProductTypeIDs { get; set; }
     }
 }

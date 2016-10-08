@@ -24,7 +24,7 @@ namespace bzale.WebsiteService
         /// <param name="method"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public async Task<R> GetResponseObject<T,R>(string uri, eHttpMethodType method, T content)
+        public async Task<R> GetResponseObject<S,R>(string uri, eHttpMethodType method, S content)
         {
             R responseObject = default(R);
 
@@ -42,7 +42,7 @@ namespace bzale.WebsiteService
             using (var client = new HttpClient())
             {
                 string jsonstring = null;
-                if (!(content is bool) || content != null )
+                if ((content is bool) || (content is object && content != null))
                 {
                     jsonstring = JsonConvert.SerializeObject(content);
                 }

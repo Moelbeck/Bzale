@@ -14,3 +14,5 @@ C:\Work\BZale\Bzale\BzaleService\Repository\bin\Debug\EntityFramework.SqlServer.
 C:\Work\BZale\Bzale\BzaleService\Repository\bin\Debug\Common.pdb
 C:\Work\BZale\Bzale\BzaleService\Repository\obj\Debug\Repository.dll
 C:\Work\BZale\Bzale\BzaleService\Repository\obj\Debug\Repository.pdb
+C:\Work\BZale\Bzale\BzaleService\Repository\obj\Debug\Repository.Migrations.addedCompanyIDtoAccount.resources
+C:\Work\BZale\Bzale\BzaleService\Repository\obj\Debug\Repository.csproj.GenerateResource.Cache

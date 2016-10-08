@@ -3,17 +3,17 @@ using System.Collections.Generic;
 
 namespace depross.Interfaces
 {
-    public interface ICategoryRepository
+    public interface IMainCategoryRepository
     {
 
-        List<Category> GetCategories(int page, int size);
-        List<Category> GetCategoriesWithIDs(List<int> ids);
+        List<MainCategory> GetMainCategories(int page, int size);
+        List<MainCategory> GetCategoriesById(List<int> ids);
 
-        Category GetCategory(int categoryid);
-        void AddNewCategory(Category newCategory);
+        MainCategory GetMainCategory(int categoryid);
+        void AddMainCategory(MainCategory newCategory);
 
-        void UpdateCategory(Category category);
+        void UpdateMainCategory(MainCategory category);
 
-        List<Category> GetCategoriesBySearchString(string searchstring, int page, int size);
+        List<MainCategory> GetCategoriesByString(string searchstring, int page, int size);
     }
 }

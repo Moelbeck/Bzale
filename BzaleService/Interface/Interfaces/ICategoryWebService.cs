@@ -9,12 +9,12 @@ namespace depross.Interfaces
         #region Categories
         List<CategoryDTO> GetMainCategories(int page, int size);
  
-        CategoryDTO GetCategory(int id);
+        CategoryDTO GetMainCategory(int id);
 
         List<CategoryDTO> GetSubCategoriesForMain(int id);
 
  
-        List<CategoryDTO> GetCategoriesBySearchString(string searchstring, int page, int size, int userid);
+        List<CategoryDTO> GetMainCategoriesBySearchString(string searchstring, int page, int size, int userid);
         #endregion
 
         #region Manufacturer

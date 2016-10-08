@@ -39,15 +39,6 @@ namespace depross.Common
         [Display(Name = "Kvinde")]
         Female = 2
     }
-    public enum eAmountType
-    {
-        None=0,
-        KG=1,
-        Tonnes=2,
-        Stk=4,
-        Litre=8,
-        Meter=16
-    }
     public enum eImageType
     {
         None=0,
@@ -72,16 +63,16 @@ namespace depross.Common
         Account=2
     }
 
-    public enum eJobType
-    {
-        None=0,
-        Murer = 1,
-        Tømrer = 2,
-        Smed =4,
-        Kontor = 8,
-        Lager = 16,
+    //public enum eJobType
+    //{
+    //    None=0,
+    //    Murer = 1,
+    //    Tømrer = 2,
+    //    Smed =4,
+    //    Kontor = 8,
+    //    Lager = 16,
 
-    }
+    //}
 
     public enum eLogSaleListingType
     {
@@ -103,31 +94,20 @@ namespace depross.Common
     }
 
     [Flags]
-    public enum eSaleListingType
+    public enum eSalelistingTypes
     {
-        None,
-        Bed,
-        Bricks,
-
-
-        Car,
-        Chair,
-        Computer,
-        Cabinet,
-
-        Door,
-
-        Folder,
-
-        Sand,
-        Screen,
-        Shelf,
-        Soil,
-        Stones,
-        
-        Table,
-        Telephone
-
+        None =0,
+        Dimensions =1,
+        Weight =2,
+        Thickness =4,
+        Lenght= 8,
+        Processor = 16,
+        RAM = 32,
+        Harddisk = 64,
+        Screen = 128,
+        Car = 256,
+        PrivateCar = 512,
+        CompanyCar = 1024,
     }
 
 

@@ -15,7 +15,7 @@ namespace depross.ViewModel
          
         public eGender Gender { get; set; }
          
-        public string Country { get; set; }
+        public eCountryCode CountryCode { get; set; }
          
         public int PostalCode { get; set; }
          

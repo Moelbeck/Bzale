@@ -74,6 +74,10 @@
       <Project>{b86c5cbc-9cba-4a70-a3c9-90845fba8d21}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{387FE6F0-9A79-4904-9C5F-58F197F2B512}</Project>
+      <Name>Repository</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

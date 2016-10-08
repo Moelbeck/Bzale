@@ -19,14 +19,15 @@ namespace depross.ViewModel
  
         [Display(Name = "Er verificeret")]
         public bool IsVerified { get; set; }
-        [Display(Name = "Land")]
-        public string Country { get; set; }
- 
-        [Display(Name = "Postnummer")]
-        public int PostalCode { get; set; }
- 
+
         [Display(Name = "Adresse")]
         public string Address { get; set; }
+
+        [Display(Name = "Postnummer")]
+        public int PostalCode { get; set; }
+
+        [Display(Name = "By")]
+        public string City { get; set; }
  
         [Display(Name = "Email")]
         public string Email { get; set; }

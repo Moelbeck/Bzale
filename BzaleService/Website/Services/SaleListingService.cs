@@ -11,12 +11,12 @@ namespace bzale.WebsiteService
     /// This will be responsible for creating items
     /// Images for the items is created in ImageService
     /// </summary>
-    public class AnnonceService
+    public class SaleListingService
     {
-        private string accountURI = string.Format("{0}{1}", Konstanter.BASEURI, "CategoryWeb/");
+        private string accountURI = string.Format("{0}{1}", Konstanter.BASEURI, "SaleListing/");
         private HttpBaseClient client;
 
-        public AnnonceService()
+        public SaleListingService()
         {
             client = new HttpBaseClient(accountURI);
 
@@ -71,10 +71,10 @@ namespace bzale.WebsiteService
 
         #endregion
         #region POST
-        public async Task<SaleListingDTO> CreateNewSaleListing(SaleListingCreateDTO viewmodel)
+        public async Task<SaleListingDTO> CreateNewSaleListing(SaleListingDTO viewmodel)
         {
             string uri = string.Format("create");
-            var salelistings = await client.GetResponseObject<SaleListingCreateDTO, SaleListingDTO>(uri, eHttpMethodType.POST, viewmodel);
+            var salelistings = await client.GetResponseObject<SaleListingDTO, SaleListingDTO>(uri, eHttpMethodType.POST, viewmodel);
             return salelistings;
         }
 
@@ -89,10 +89,10 @@ namespace bzale.WebsiteService
 
         #endregion
         #region PUT
-        public async Task<bool> UpdateSaleListing(SaleListingUpdateDTO viewmodel)
+        public async Task<bool> UpdateSaleListing(SaleListingDTO viewmodel)
         {
             string uri = string.Format("update");
-            var salelistings = await client.GetResponseObject<SaleListingUpdateDTO, bool>(uri, eHttpMethodType.PUT, viewmodel);
+            var salelistings = await client.GetResponseObject<SaleListingDTO, bool>(uri, eHttpMethodType.PUT, viewmodel);
             return salelistings;
         }
         #endregion

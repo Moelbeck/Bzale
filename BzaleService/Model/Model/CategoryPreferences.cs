@@ -10,6 +10,6 @@ namespace depross.Model
     {
         public virtual Account Account { get; set; }
 
-        public virtual List<Category> PreferedCategories { get; set; }       
+        public virtual List<MainCategory> PreferedCategories { get; set; }       
     }
 }

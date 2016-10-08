@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using depross.Interfaces;
 using depross.Model;
+using depross.Repository;
+using depross.Repository.DatabaseContext;
 using depross.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -11,52 +13,21 @@ namespace depross.WebService
     public class ManufacturerWebService : IManufacturerService
 
     {
-        private IProductRepository _productRepository;
         private IManufacturerRepository _manufacturerRepository;
-        private ICategoryRepository _categoryRepository;
-        public ManufacturerWebService(IProductRepository prodRepo,IManufacturerRepository manuRepo, ICategoryRepository catRepo)
+        private IMainCategoryRepository _categoryRepository;
+        public ManufacturerWebService()
         {
-            _productRepository = prodRepo;
-            _manufacturerRepository = manuRepo;
-            _categoryRepository = catRepo;
-        }
-        public ProductDTO GetProductByID(int id)
-        {
-            try
-            {
-                ProductType product = _productRepository.GetProductByID(id);
-                return Mapper.Map<ProductType, ProductDTO>(product);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
+            BzaleDatabaseContext context = new BzaleDatabaseContext();
+            _manufacturerRepository = new ManufacturerRepository(context);
+            _categoryRepository = new MainCategoryRepository(context);
         }
 
-        public void CreateProduct(ProductDTO viewmodel)
-        {
-            try
-            {
-                var product = Mapper.Map<ProductDTO, ProductType>(viewmodel);
-                _productRepository.AddProduct(product);
-            }
-            catch (Exception ex)
-            {
-
-                throw;
-            }
-
-        }
 
         public void CreateManufacturer(ManufacturerDTO viewmodel)
         {
             try
             {
                 var manufacturer = Mapper.Map<ManufacturerDTO, Manufacturer>(viewmodel);
-                var categories = _categoryRepository.GetCategoriesWithIDs(viewmodel.CategoryIDs);
-
-                manufacturer.Categories = categories;
                 _manufacturerRepository.AddNewManufacturer(manufacturer);
             }
             catch (Exception ex)
@@ -78,11 +49,5 @@ namespace depross.WebService
             return Mapper.Map<Manufacturer, ManufacturerDTO>(manufacturer);
         }
 
-        public List<ProductDTO> GetProductsByManufacturer(int id)
-        {
-            var products = _productRepository.GetAllProductsForManufacturer(id, 1, int.MaxValue);
-            return products.Select(Mapper.Map<ProductType, ProductDTO>).ToList();
-
-        }
     }
 }

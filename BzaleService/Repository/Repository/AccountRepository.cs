@@ -8,6 +8,10 @@ namespace depross.Repository
 {
     public class AccountRepository :  GenericRepository<Account>,IAccountRepository
     {
+        public AccountRepository():this(new BzaleDatabaseContext())
+        {
+
+        }
         public AccountRepository(BzaleDatabaseContext context) : base(context)
         {
 
@@ -25,13 +29,11 @@ namespace depross.Repository
         }
 
         public Account AddNewAccount(Account newAccount)
-        {
-            //Company needs some kind of check if he is premium
-            
-                Add(newAccount);
+        {           
+              var added =  Add(newAccount);
                 Save();
             
-            return GetSingle(e=>e.Email == newAccount.Email);
+            return added;
         }
 
         public bool IsMailInDatabase(string email)

@@ -3,6 +3,8 @@ using depross.Common;
 using depross.Extension;
 using depross.Interfaces;
 using depross.Model;
+using depross.Repository;
+using depross.Repository.DatabaseContext;
 using depross.service;
 using depross.Service;
 using depross.ViewModel;
@@ -22,10 +24,11 @@ namespace depross.WebService
         readonly ICompanyRepository _companyRepository;
         readonly CreateAndUpdateService _createAndUpdateService;
 
-        public AccountWebService(IAccountRepository accountService, ICompanyRepository comRepo)
+        public AccountWebService()
         {
-            _accountRepository = accountService;
-            _companyRepository = comRepo;
+            BzaleDatabaseContext context = new BzaleDatabaseContext();
+            _accountRepository = new AccountRepository(context);
+            _companyRepository = new CompanyRepository(context);
             _createAndUpdateService = new CreateAndUpdateService();
         }
 
@@ -41,6 +44,11 @@ namespace depross.WebService
                     {
                         //_log.LogLoginLogout(account.ID, eLoginType.Login);
                         accountViewModel = Mapper.Map<Account, AccountDTO>(account);
+                        if (account.Company != null)
+                        {
+                            var company = Mapper.Map<Company, CompanyDTO>(account.Company);
+                            accountViewModel.Company = company;
+                        }
                     }
 
                 }
@@ -69,16 +77,12 @@ namespace depross.WebService
             if (newaccount.Email.IsValidEmail() && !IsEmailInDatabase(newaccount.Email))
             {
                 Account account = Mapper.Map<AccountCreateDTO, Account>(newaccount);
-                    if (account.Company != null && !string.IsNullOrEmpty(account.Company.VAT) && !IsVatInDatabase(account.Company.VAT))
-                    {
-                        account.Company = _createAndUpdateService.CreateCompanyObject(newaccount.VAT, newaccount.CompanyName, newaccount.CompanyAddress); ;
-                    }
-                    string salt = PasswordValidationService.GetInstance().GenerateSalt();
+
+                string salt = PasswordValidationService.GetInstance().GenerateSalt();
                 account.Password = PasswordValidationService.GetInstance().GenerateCryptedPassword(newaccount.Password, salt);
                 account.Salt = salt;
                 account = _accountRepository.AddNewAccount(account);
                 var accountviewmodel = Mapper.Map<Account, AccountDTO>(account);
-                //_log.LogLoginLogout(account.ID, eLoginType.Created);
                 return accountviewmodel;
                 }
             }
@@ -93,18 +97,23 @@ namespace depross.WebService
         {
             try { 
             var current = _accountRepository.GetAccount(currentAccountId);
-            if ((current.Type == eAccountType.Owner || current.Type == eAccountType.Administrator) && IsVatInDatabase(newaccount.VAT) && !IsEmailInDatabase(newaccount.Email))
-            {
-                Account account = Mapper.Map<AccountCreateDTO, Account>(newaccount);
-                Company company = _companyRepository.GetCompany(newaccount.VAT);
-                string salt = PasswordValidationService.GetInstance().GenerateSalt();
-                account.Password = PasswordValidationService.GetInstance().GenerateCryptedPassword(newaccount.Password, salt);
-                account.Salt = salt;
-                account.Company = _companyRepository.AddNewCompany(company);
-                account = _accountRepository.AddNewAccount(account);
-                var accountviewmodel = Mapper.Map<Account, AccountDTO>(account);
-                return Mapper.Map<Account,AccountDTO>(current);
-            }
+                var currentcompany = current.Company;
+                if (currentcompany != null)
+                {
+                    if ((current.Type == eAccountType.Owner || current.Type == eAccountType.Administrator) && IsVatInDatabase(currentcompany.VAT) && !IsEmailInDatabase(newaccount.Email))
+                    {
+                        Account account = Mapper.Map<AccountCreateDTO, Account>(newaccount);
+                        Company company = currentcompany;
+                        string salt = PasswordValidationService.GetInstance().GenerateSalt();
+                        account.Password = PasswordValidationService.GetInstance().GenerateCryptedPassword(newaccount.Password, salt);
+                        account.Salt = salt;
+                        account.Company = _companyRepository.AddNewCompany(company);
+                        account = _accountRepository.AddNewAccount(account);
+                        var accountviewmodel = Mapper.Map<Account, AccountDTO>(account);
+                        return Mapper.Map<Account, AccountDTO>(current);
+                    }
+
+                }
             }
             catch (Exception ex)
             {
@@ -120,9 +129,11 @@ namespace depross.WebService
             if (!_companyRepository.IsVatInDatabase(newCompany.VAT))
             {
                 var newcompany = _createAndUpdateService.CreateCompanyObject(newCompany);
-                current.Company = newcompany;
-                _accountRepository.UpdateAccount(current);
-                var viewmodel = Mapper.Map<Company, CompanyDTO>(newcompany);
+                    var company = _companyRepository.AddNewCompany(newcompany);
+                current.Company = company;
+                    current.CompanyID = company.ID;
+               var acc = _accountRepository.UpdateAccount(current);
+                var viewmodel = Mapper.Map<Company, CompanyDTO>(acc.Company);
 
                 return viewmodel;
             }
@@ -174,7 +185,7 @@ namespace depross.WebService
             try
             {
                 Account acc = _accountRepository.GetAccount(viewmodel.ID);
-                return (acc.Company != null && acc.Company.ID > 0 && !string.IsNullOrWhiteSpace(acc.Company.VAT) && acc.Company.IsVerified);
+                return (acc.Company != null && acc.Company.ID > 0 && acc.HasValidatedMail);
 
             }
             catch (Exception ex)
@@ -199,7 +210,7 @@ namespace depross.WebService
             }
         }
 
-        public AccountDTO UpdateAccountInformation(AccountUpdateDTO viewmodel)
+        public AccountUpdateDTO UpdateAccountInformation(AccountUpdateDTO viewmodel)
         {
             try
             {
@@ -210,7 +221,7 @@ namespace depross.WebService
                     var currentaccount = _accountRepository.GetAccount(viewmodel.ID);
                     var updated = _createAndUpdateService.UpdateAccountFields(currentaccount, updatedacc);
                     updated = _accountRepository.UpdateAccount(updated);
-                    var accountviewmodel = Mapper.Map<Account, AccountDTO>(updated);
+                    var accountviewmodel = Mapper.Map<Account, AccountUpdateDTO>(updated);
 
                     return accountviewmodel;
 
@@ -284,15 +295,18 @@ namespace depross.WebService
         {
             try
             {
-                var acccount = _accountRepository.GetAccount(currentuserId);
-                if ((acccount.Type == eAccountType.Owner || acccount.Type == eAccountType.Administrator) && viewmodel.ID > 0)
+                var account = _accountRepository.GetAccount(currentuserId);
+                CompanyDTO companyviewmodel=null;
+                if (!string.IsNullOrWhiteSpace( viewmodel.VAT))
                 {
                     Company updatedcompany = Mapper.Map<CompanyDTO, Company>(viewmodel);
-                    var currentaccount = _companyRepository.GetCompany(viewmodel.ID);
-                    var updated = _createAndUpdateService.UpdateCompanyFields(currentaccount, updatedcompany);
-                    updated = _companyRepository.UpdateCompany(updated);
-                    var accountviewmodel = Mapper.Map<Company, CompanyDTO>(updated);
-                    return accountviewmodel;
+                    var currentcompany = _companyRepository.GetCompany(viewmodel.VAT);
+                    if (account.Company.VAT.Equals(currentcompany.VAT)) {
+                        currentcompany = _createAndUpdateService.UpdateCompanyFields(currentcompany, updatedcompany);
+                        currentcompany = _companyRepository.UpdateCompany(currentcompany);
+                        companyviewmodel = Mapper.Map<Company, CompanyDTO>(currentcompany);
+                    }
+                    return companyviewmodel;
                 }
                 return null;
             }

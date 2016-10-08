@@ -5,29 +5,29 @@ namespace depross.Interfaces
 
 {
 
-    public interface IProductRepository
+    public interface IProductTypeRepository
     {
-        ProductType AddProduct(ProductType newproduct);
+        ProductType AddProductType(ProductType newproduct);
 
-        void UpdateProduct(ProductType updatedProduct);
+        void UpdateProductType(ProductType updatedProduct);
 
-        ProductType GetProductByID(int productid);
+        ProductType GetProductTypeByID(int productid);
 
+        List<ProductType> GetAllProductsTypesByString(string searchstring, int page, int size);
 
-        List<ProductType> GetAllProductsContainingString(string searchstring, int page, int size);
-
-
-        List<string> GetAllProductNames(int page, int size);
-
-
-        List<ProductType> GetAllProductsForManufacturer(int manufacturer, int page, int size);
-
-        List<ProductType> GetAllProducts(int page, int size);
-
-        List<string> GetAllProductNamesForManufacturer(Manufacturer manufacturer, int page, int size);
+        List<ProductType> GetAllProductTypesForCategory(int categoryid,int page, int size);
 
         List<ProductType> GetProductsForManufacturer(Manufacturer manufacturer, int page, int size);
-        bool IsManufacturerInDatabase(Manufacturer m);
+
+        /// <summary>
+        /// This is for creating manufactures.
+        /// A manufacturer can make products for multiple types of categories.
+        /// </summary>
+        /// <param name="categoryid"></param>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <returns></returns>
+        List<ProductType> GetAllProductTypesForCategories(List<int> categoryids,int page, int size);
 
     }
 }

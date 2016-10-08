@@ -16,7 +16,7 @@ namespace depross.Interfaces
  
         AccountUpdateDTO GetAccountInformation(int id);
  
-        AccountDTO UpdateAccountInformation(AccountUpdateDTO account); 
+        AccountUpdateDTO UpdateAccountInformation(AccountUpdateDTO account); 
 
         bool UpdatePassword(AccountUpdatePasswordViewModel account);
         #endregion

@@ -27,18 +27,24 @@ namespace depross.Repository
 
         public List<Manufacturer> GetAllManufacturers(int page, int size)
         {
-            return Get(e => e.Deleted == null,page,size).ToList();
+            return Get(e => e.Deleted == null).OrderBy(e => e.ID)
+                //.Skip((page - 1) * size).Take(size)
+                .ToList();
 
         }
 
         public List<string> GetAllManufacturersNames(int page, int size)
         {
-            return Get(e => e.Deleted == null,page,size).Select(s => s.Name).ToList();
+            return Get(e => e.Deleted == null).OrderBy(e => e.ID)
+                //.Skip((page - 1) * size).Take(size)
+                .Select(s => s.Name).ToList();
         }
 
         public List<Manufacturer> GetManufacturersForCategory(int categoryid, int page, int size)
         {
-            return Get(e => e.Categories.All(c=>c.ID == categoryid) && e.Deleted == null, page,size).ToList();
+            return Get(e => e.ProductTypes.All(a=>a.Category.ID == categoryid) && e.Deleted == null)
+                //.OrderBy(e => e.ID).Skip((page - 1) * size).Take(size)
+                .ToList();
         }
 
         public Manufacturer AddNewManufacturer(Manufacturer newManufacturer)
